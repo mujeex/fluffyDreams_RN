@@ -46,7 +46,7 @@ import {connect} from "react-redux"
         // console.log(i)
         this.indexStateHandler(i)
         this.highlightStateHandler(i)
-        // this.props.flavorPrice(options)
+        this.props.flavorPrice(options)
     }
    
 

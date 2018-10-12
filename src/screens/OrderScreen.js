@@ -20,6 +20,12 @@ const HEIGHT= Dimensions.get('window').height
          drawUnderTabBar: true
       };
 
+state={
+  flavor:null,
+  size:null,
+  toppings:null,
+  total: null
+}
 
     popNavigation = () => {
       this.props.clear()
@@ -27,16 +33,47 @@ const HEIGHT= Dimensions.get('window').height
     }
     //function for changing the price of order in the state
     priceHandler = (options) => {
-      console.log(options.name)
+      let i= options.price
+      this.setState(prevState=>{
+
+        return{
+          ...prevState,
+          flavor:i,
+          total:i+prevState.size+prevState.toppings
+        }
+
+      })
+
+      console.log(options)
       console.log(options.price)
       // switch()
     }
-    componentDidMount = () => {
+    componentWillMount = () => {
       // console.log(this.props.selectedCake)
-      let price = analyse(this.props.selectedCake.flavor,this.props.selectedCake.size,this.props.selectedCake.toppings)
-      console.log()
-      this.props.update(price)
+      const price = analyse(this.props.selectedCake.flavor,this.props.selectedCake.size,this.props.selectedCake.toppings)
+      let flavor= price[0]
+      let size= price[1]
+      let toppings= price[2]
+      // console.log()
+      this.setState(prevState=>{
+        return{
+          ...prevState,
+          flavor:flavor,
+          size:size,
+          toppings:toppings,
+          total: flavor+size+toppings
+        }
+
+      })
+      // this.props.update(price)
+
     };
+    componentDidMount = () => {
+      console.log(this.state)
+    };
+    
+
+    compo
     
   
   
@@ -48,7 +85,7 @@ const HEIGHT= Dimensions.get('window').height
      
 
       <View style={styles.content}>
-      <ItemData  title= "Back" onPress={this.popNavigation} data={this.props.selectedCake} price={this.props.calcPrice}/>
+      <ItemData  title= "Back" onPress={this.popNavigation} data={this.props.selectedCake} price={this.state.total}/>
       </View>
 
       <View style={styles.customize} >
@@ -105,7 +142,7 @@ const styles= StyleSheet.create({
 const mapDispatchToProps = dispatch => {
   return{
     clear: ()=> dispatch(clearSelected()),
-    update: (price)=> dispatch(updatePrice(price))
+    // update: (price)=> dispatch(updatePrice(price))
 
   }
 }
@@ -113,7 +150,7 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state =>{
   return{
     selected: state.cart.selected,
-    calcPrice:state.cart.total
+    // calcPrice:state.cart.total
   }
 }
 

@@ -17,10 +17,10 @@ export const updatePrice = (price) => {
 
     return {
         type: UPDATE_PRICE,
-        price
-        // flavor: price[0],
-        // size: price[1],
-        // toppings: price[3]
+        // price
+        flavor: price[0],
+        size: price[1],
+        toppings: price[3]
         
     }
 }

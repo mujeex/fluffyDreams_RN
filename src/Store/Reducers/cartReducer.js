@@ -6,6 +6,13 @@ const initState= {
         id:0,
        selected:null,
        cart:[],
+
+       details:{
+        flavor:null,
+        size:null,
+        toppings:null
+       },
+
        total:null
 }
 
@@ -24,7 +31,9 @@ const reducer = (state=initState, action) =>{
         case UPDATE_PRICE:
         return{
             ...state,
-            total: action.price[0]+action.price[1]+ action.price[2]
+            // flavor: action.price[0]
+            // total: action.price[0]+action.price[1]+ action.price[2]
+            total: action.flavor+ action.size + action.toppings
         }
         default:
         return state
