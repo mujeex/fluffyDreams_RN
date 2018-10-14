@@ -44,7 +44,7 @@ class ListItems extends Component {
         // console.log(i)
         // this.indexStateHandler(i)
         this.highlightStateHandler(i)
-        // this.props.flavorPrice(options)
+        this.props.priceEdit(options)
     }
    
     render(){

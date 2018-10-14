@@ -12,7 +12,7 @@ class Toppings extends Component {
         <View style={styles.label}><Text style={{color: "black"}}>{this.props.label}</Text></View>
         <View style={styles.listContainer}>
         {this.props.options.map((options, i) => (
-            <ListItems options={options} key={i} index={i}/>
+            <ListItems priceEdit={this.props.priceEdit} options={options} key={i} index={i}/>
               )
         )}
         </View>

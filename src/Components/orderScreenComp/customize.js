@@ -6,6 +6,10 @@ import Toppings from "./Toppings/toppings"
 
 
 export default class Customize extends Component {
+  state={
+    
+  }
+
   render() {
     return (
       <View style= {styles.wrapper}>
@@ -15,9 +19,9 @@ export default class Customize extends Component {
         <Text>{this.props.cakes.price}</Text>
         </View>
         <ScrollView contentContainerStyle={styles.scrollWrapper}>
-            <Selections flavorPrice= {this.props.priceHandler} label="Flavor" options={this.props.customs.Flavor}/>
-            <Selections label="Size" options={this.props.customs.Sizes}/>
-            <Toppings label="Toppings" options={this.props.customs.Toppings}/>
+            <Selections priceEdit= {this.props.priceHandler} label="Flavor" options={this.props.customs.Flavor}/>
+            <Selections priceEdit= {this.props.priceHandler} label="Size" options={this.props.customs.Sizes}/>
+            <Toppings priceEdit= {this.props.priceHandler} label="Toppings" options={this.props.customs.Toppings}/>
 
         </ScrollView>
       </View>

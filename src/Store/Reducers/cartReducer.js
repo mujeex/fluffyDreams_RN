@@ -1,4 +1,4 @@
-import {ADD_SELECTED , CLEAR_SELECTED,UPDATE_PRICE} from "../Actions/actionTypes"
+import {ADD_SELECTED , CLEAR_SELECTED,ITEM_SELECT} from "../Actions/actionTypes"
 
 
 const initState= {
@@ -6,14 +6,9 @@ const initState= {
         id:0,
        selected:null,
        cart:[],
+       Rxhighlighted:false
 
-       details:{
-        flavor:null,
-        size:null,
-        toppings:null
-       },
-
-       total:null
+       
 }
 
 const reducer = (state=initState, action) =>{
@@ -28,13 +23,12 @@ const reducer = (state=initState, action) =>{
             ...state,
             selected: null
         }
-        case UPDATE_PRICE:
-        return{
+        case ITEM_SELECT:
+        return {
             ...state,
-            // flavor: action.price[0]
-            // total: action.price[0]+action.price[1]+ action.price[2]
-            total: action.flavor+ action.size + action.toppings
+            Rxhighlighted:action.payload
         }
+       
         default:
         return state
     }

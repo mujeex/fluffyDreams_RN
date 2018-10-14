@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text ,StyleSheet, TouchableOpacity, } from 'react-native';
 import {connect} from "react-redux"
+import {itemSelect} from "../../Store/Actions/index"
 
  class Selections extends Component {
 
@@ -27,16 +28,21 @@ import {connect} from "react-redux"
 
     //The purpose of this function is to set styles for the targeted index
     highlightStateHandler = (i) =>{     
+        let bool= false
         if(this.state.id === i){
             if(!this.state.highlighted){
+                bool=true
                 this.setState({
                     highlighted:true
                 })
+                // this.props.select(bool)
             }
             else{
+        
                 this.setState({
                     highlighted:false
                 })
+                // this.props.select(bool)
             }
         }  
            }
@@ -44,9 +50,11 @@ import {connect} from "react-redux"
     highlightHandler = (i,options) =>{
        
         // console.log(i)
+        
         this.indexStateHandler(i)
         this.highlightStateHandler(i)
-        this.props.flavorPrice(options)
+        
+        this.props.priceEdit(options)
     }
    
 
@@ -109,6 +117,12 @@ const styles= StyleSheet.create({
     }
 })
 
+const mapDispatchToProps = dispatch => {
+    return{
+        select: (bool)=>dispatch(itemSelect(bool))
+    }
+}
+
 const mapStateToProps = state => {
     return{
         id: state.cart.id
@@ -116,4 +130,4 @@ const mapStateToProps = state => {
   
 }
 
-export default connect(mapStateToProps)(Selections)
+export default connect(mapStateToProps,mapDispatchToProps)(Selections)

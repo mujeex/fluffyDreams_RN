@@ -4,8 +4,8 @@ import {  View, ImageBackground, StyleSheet, Button, Dimensions } from 'react-na
 import ItemData from "../Components/orderScreenComp/itemData"
 import ButtonSlide from "../Components/orderScreenComp/button"
 import Customize  from "../Components/orderScreenComp/customize"
-import {clearSelected,updatePrice} from "../Store/Actions/index"
-import analyse from "../priceAnalyser/analyser"
+import {clearSelected} from "../Store/Actions/index"
+import {analyse,add,toppingsfunc} from "../priceAnalyser/analyser"
 
 
 const HEIGHT= Dimensions.get('window').height
@@ -21,6 +21,7 @@ const HEIGHT= Dimensions.get('window').height
       };
 
 state={
+  toppingsholder:null,
   flavor:null,
   size:null,
   toppings:null,
@@ -33,35 +34,104 @@ state={
     }
     //function for changing the price of order in the state
     priceHandler = (options) => {
-      let i= options.price
-      this.setState(prevState=>{
+      let i
+      switch(options.id){
 
-        return{
-          ...prevState,
-          flavor:i,
-          total:i+prevState.size+prevState.toppings
-        }
+        case "flavor":
+        i=options.price
+        // if(this.props.highlight){
+          this.setState(prevState=>{
+            return{
+              ...prevState,
+              flavor:i,
+              total:i+prevState.size+prevState.toppings
+            }
+          })
+        // }else{
+        //   this.setState(prevState=>{
+        //     return{
+        //       ...prevState,
+        //       flavor:prevState.flavor,
+        //       total:prevState.flavor+prevState.size+prevState.toppings
+        //     }
+        //   })
+        // }
+       
+        break;
 
-      })
+        case "size":
+        i=options.price
+        this.setState(prevState=>{
+          return{
+            ...prevState,
+            size:i,
+            total:prevState.flavor+i+prevState.toppings
+          }
+        })
+        break;
 
-      console.log(options)
-      console.log(options.price)
+        case "toppings":
+        let added;
+        let newHolder=[]
+        let holder
+        //the holder variable below holds the value of the current state of the toppings in the component state
+        console.log("toppngs")
+        console.log(this.state.toppingsholder)
+        console.log(options.price)
+        holder=this.state.toppingsholder
+       
+
+      
+         holder.push(options.price)
+         console.log(holder)
+         newHolder=holder
+       
+
+        added = add(newHolder)
+        console.log("added: "+ added)
+        
+        this.setState(prevState=>{
+          return{
+            ...prevState,
+            toppingsholder:newHolder,
+            toppings:added,
+            total:prevState.flavor+prevState.size+added
+          }
+        })
+        break;
+        default:
+        return null
+      }
+      
+     
+
+      // console.log(options)
+      // console.log(options.price)
       // switch()
     }
     componentWillMount = () => {
       // console.log(this.props.selectedCake)
-      const price = analyse(this.props.selectedCake.flavor,this.props.selectedCake.size,this.props.selectedCake.toppings)
+      const price = analyse(this.props.selectedCake.flavor,this.props.selectedCake.size)
+      let holder= toppingsfunc(this.props.selectedCake.toppings)
+      // console.log(Array.isArray(holder))
+      // console.log(holder)
+      // console.log(holder.push(8))
+      // console.log(holder)
+      // console.log("CWM holder: "+holder)
+      let added = add(holder)
       let flavor= price[0]
       let size= price[1]
-      let toppings= price[2]
+      let toppings= added
       // console.log()
       this.setState(prevState=>{
         return{
           ...prevState,
+          toppingsholder:holder,
           flavor:flavor,
           size:size,
           toppings:toppings,
           total: flavor+size+toppings
+          // +added
         }
 
       })
@@ -69,11 +139,16 @@ state={
 
     };
     componentDidMount = () => {
-      console.log(this.state)
+      console.log("CDM")
+      // console.log(this.state.toppingsholder)
+      // let i= "arsenal"
+      // console.log(i.push("j"))
+      // console.log(this.state)
+      // console.log(this.state.toppingsholder.push(5))
     };
     
 
-    compo
+  
     
   
   
@@ -150,6 +225,7 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state =>{
   return{
     selected: state.cart.selected,
+    highlight:state.cart.Rxhiglighted
     // calcPrice:state.cart.total
   }
 }

@@ -1,4 +1,4 @@
-import {ADD_SELECTED, CLEAR_SELECTED , UPDATE_PRICE} from "./actionTypes"
+import {ADD_SELECTED, CLEAR_SELECTED , ITEM_SELECT} from "./actionTypes"
 
 export const addSelected= (item) => {
     return {
@@ -13,14 +13,10 @@ export const clearSelected= () => {
     }
 }
 
-export const updatePrice = (price) => {
+export const itemSelect = (bool) => {
 
     return {
-        type: UPDATE_PRICE,
-        // price
-        flavor: price[0],
-        size: price[1],
-        toppings: price[3]
-        
+        type: ITEM_SELECT,
+        payload: bool
     }
 }
