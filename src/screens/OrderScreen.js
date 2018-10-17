@@ -69,24 +69,16 @@ state={
           }
         })
         break;
-
+        
         case "toppings":
         let added;
         let newHolder=[]
         let holder
         //the holder variable below holds the value of the current state of the toppings in the component state
-        console.log("toppngs")
-        console.log(this.state.toppingsholder)
-        console.log(options.price)
         holder=this.state.toppingsholder
-       
-
-      
          holder.push(options.price)
          console.log(holder)
          newHolder=holder
-       
-
         added = add(newHolder)
         console.log("added: "+ added)
         
