@@ -1,3 +1,3 @@
 export {showItems} from "./homeActions.js"
-export {addSelected, clearSelected,itemSelect} from "./cartActions.js"
+export {addSelected, clearSelected,itemSelect,updateFlavor,updateSize} from "./orderActions.js"
 

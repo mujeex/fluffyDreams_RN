@@ -4,7 +4,7 @@ import {  View, ImageBackground, StyleSheet, Button, Dimensions } from 'react-na
 import ItemData from "../Components/orderScreenComp/itemData"
 import ButtonSlide from "../Components/orderScreenComp/button"
 import Customize  from "../Components/orderScreenComp/customize"
-import {clearSelected} from "../Store/Actions/index"
+import {clearSelected,updateFlavor,updateSize} from "../Store/Actions/index"
 import {analyse,add,toppingsfunc} from "../priceAnalyser/analyser"
 
 
@@ -29,17 +29,21 @@ state={
 }
 
     popNavigation = () => {
-      this.props.clear()
+      // this.props.clear()
         this.props.navigator.pop()
     }
     //function for changing the price of order in the state
-    priceHandler = (options) => {
-      let i
+    priceHandler = (options, bool) => {
+      let i;
       switch(options.id){
-
+      
         case "flavor":
-        i=options.price
-        // if(this.props.highlight){
+        //dispatch action to update the redux selected item
+        console.log(options.name)
+        this.props.flavUpdate(options.name)
+        // console.log(bool)
+          i=options.price
+        // if(bool){
           this.setState(prevState=>{
             return{
               ...prevState,
@@ -47,6 +51,12 @@ state={
               total:i+prevState.size+prevState.toppings
             }
           })
+          if(bool){
+            console.log("I need to add")
+        }else{
+          console.log("I need to subtract")
+        }
+        
         // }else{
         //   this.setState(prevState=>{
         //     return{
@@ -60,6 +70,7 @@ state={
         break;
 
         case "size":
+        this.props.sizeUpdate(options.name)
         i=options.price
         this.setState(prevState=>{
           return{
@@ -130,14 +141,7 @@ state={
       // this.props.update(price)
 
     };
-    componentDidMount = () => {
-      console.log("CDM")
-      // console.log(this.state.toppingsholder)
-      // let i= "arsenal"
-      // console.log(i.push("j"))
-      // console.log(this.state)
-      // console.log(this.state.toppingsholder.push(5))
-    };
+    
     
 
   
@@ -147,16 +151,16 @@ state={
 
   render() {
     return (
-      <ImageBackground source={this.props.selectedCake.image} style={styles.backgroundImage}>
+      <ImageBackground source={this.props.selected.image} style={styles.backgroundImage}>
 
      
 
       <View style={styles.content}>
-      <ItemData  title= "Back" onPress={this.popNavigation} data={this.props.selectedCake} price={this.state.total}/>
+      <ItemData  title= "Back" onPress={this.popNavigation} data={this.props.selected} price={this.state.total}/>
       </View>
 
       <View style={styles.customize} >
-          <Customize customs={this.props.Customs} cakes={this.props.selectedCake} priceHandler={this.priceHandler}/>
+          <Customize customs={this.props.Customs} cakes={this.props.selected} priceHandler={this.priceHandler}/>
       </View>
 
       <View style= {styles.wrapper}>
@@ -209,6 +213,8 @@ const styles= StyleSheet.create({
 const mapDispatchToProps = dispatch => {
   return{
     clear: ()=> dispatch(clearSelected()),
+    flavUpdate: (flavor) => dispatch(updateFlavor(flavor)),
+    sizeUpdate: (size) => dispatch(updateSize(size))
     // update: (price)=> dispatch(updatePrice(price))
 
   }
@@ -216,8 +222,8 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state =>{
   return{
-    selected: state.cart.selected,
-    highlight:state.cart.Rxhiglighted
+    selected: state.order.selected,
+    highlight:state.order.Rxhiglighted
     // calcPrice:state.cart.total
   }
 }

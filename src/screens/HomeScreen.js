@@ -23,6 +23,7 @@ class HomeScreen extends Component {
     const selPlace = this.props.cakes.find(cakes => {
       return cakes.id === key
     })
+    //this is for adding the selected item to the redux store
     this.props.add(selPlace)
     // console.log(selPlace)
 //passing the flavor, size and toppings for price determination
@@ -144,7 +145,7 @@ const mapStateToProps= state => {
 return{
   cakes: state.home.cakes,
     // customizable: state.cart.customizables,
-    selected: state.cart.selected,
+    selected: state.order.selected,
 
 }  
   

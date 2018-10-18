@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
-import { Text, View ,StyleSheet, Image, Platform, ScrollView} from 'react-native'
+import { Text, View ,StyleSheet, Image, Platform, ScrollView,TouchableOpacity} from 'react-native'
 import Icon from "react-native-vector-icons/Ionicons"
 import Selections from "./selections"
 import Toppings from "./Toppings/toppings"
 
 
 export default class Customize extends Component {
-  state={
-    
-  }
+ 
 
   render() {
     return (
@@ -23,6 +21,29 @@ export default class Customize extends Component {
             <Selections priceEdit= {this.props.priceHandler} label="Size" options={this.props.customs.Sizes}/>
             <Toppings priceEdit= {this.props.priceHandler} label="Toppings" options={this.props.customs.Toppings}/>
 
+            {/* button component */}
+            <View style={styles.counter}>
+            <View style={styles.counterWrapper}>
+            {/* incbutton */}
+              <View style={styles.incButton}> 
+              <TouchableOpacity>
+              <Icon name={Platform.OS ==="android"?"md-add":"ios-add"} size={25}/>
+              </TouchableOpacity>
+               </View>
+              {/* number area */}
+              <View style={styles.number}>
+              <Text>1</Text>
+              </View>
+              {/* decbutton */}
+              <View style={styles.decButton}>
+              <TouchableOpacity>
+              <Icon name={Platform.OS ==="android"?"md-remove":"ios-remove"} size={25}/>
+              </TouchableOpacity>
+              
+              </View>
+            </View>
+          
+            </View>
         </ScrollView>
       </View>
     )
@@ -62,6 +83,51 @@ const styles= StyleSheet.create({
       width: 100,
       resizeMode: 'cover',
 
+    },counter:{
+      flexDirection: 'row',
+      width: "100%",
+      height: 70,
+      paddingVertical: 10,
+      paddingLeft: 10,
+      justifyContent: "flex-start",
+      alignItems: 'center',
+      borderWidth:2,
+      borderColor: "black", 
+    }
+    ,counterWrapper:{
+      borderTopLeftRadius: 10,
+      borderBottomLeftRadius: 10,
+      borderTopRightRadius: 10,
+      borderBottomRightRadius:10,
+      height: 50,
+      borderWidth: 1,
+      borderColor: "red",
+      flexDirection: 'row',
+      justifyContent: 'center',
+      width: '60%'
+
+    },
+    incButton:{
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100%',
+      flex:2,
+      borderTopLeftRadius: 10,
+      borderBottomLeftRadius: 10,
+    },
+    decButton:{
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100%',
+      flex:2,
+      borderTopRightRadius: 10,
+      borderBottomRightRadius:10
+    },
+    number:{
+      height: '100%',
+      flex:3,
+      justifyContent:"center",
+      alignItems: 'center',
     }
 
 })

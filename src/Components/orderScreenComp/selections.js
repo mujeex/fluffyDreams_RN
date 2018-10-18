@@ -88,33 +88,22 @@ import {itemSelect} from "../../Store/Actions/index"
 state={
     tracker:0,
     index: null,
-    bool:false
+    bool:false,
+    price:false
 }
 
-highlightHandler = (optionIndex) => {
+highlightHandler = (optionIndex,options) => {
     //Assigned it to the value of tracker in the state in order of retaining value
+    
     let tracker=this.state.tracker
-    //How to reset the tracker whenever a new element gets pressed?
-    //It can be reset whenever the prev and current state are not the same
-    // if(tracker ==='true'){
-    //     // tracker=this.state.tracker+1
-    //     console.log("awesome")
-    // }
-    if(this.state.index!==optionIndex){
-           tracker=0
-    } else{
-        tracker++
-    }
-        console.log("=============")
-        console.log("prevIndex: "+ this.state.index)
-        console.log("currentIndex: "+ optionIndex)
-        console.log("tracker: "+tracker)
-        console.log("state tracker: "+ this.state.tracker)
-   
+    this.state.index!==optionIndex?tracker=0:tracker++
+
     this.setState(prevState =>({
         tracker:tracker,
         index: optionIndex,
-        bool:prevState.index == optionIndex? false: true
+        bool:prevState.index == optionIndex? false: true,
+        price: tracker%2==0?this.props.priceEdit(options,true)
+        :this.props.priceEdit(options,false)
     }))
 }
 
@@ -192,7 +181,8 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
     return{
-        id: state.cart.id
+        id: state.order.id,
+        highlight:state.order.Rxhighlighted
     }
   
 }

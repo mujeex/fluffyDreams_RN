@@ -4,3 +4,5 @@ export const ADD_SELECTED = "ADD_SELECTED"
 export const CLEAR_SELECTED = "CLEAR_SELECTED"
 
 export const ITEM_SELECT = "ITEM_SELECT"
+export const UPDATE_FLAVOR= 'UPDATE_FLAVOR'
+export const UPDATE_SIZE= 'UPDATE_SIZE'
