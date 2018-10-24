@@ -1,6 +1,7 @@
 import {Platform} from "react-native"
 import {Navigation} from "react-native-navigation"
 import Icon from "react-native-vector-icons/Ionicons"
+import CartIcon from "../Components/cartScreenComp/cartIcon"
 
 
 
@@ -30,7 +31,9 @@ const MainTabs = () => {
             {
                 label3: "Cart",
                 screen: "fluffy.CartScreen",
-                icon: sources[2]
+                icon: sources[2],
+                title: " Shopping Cart",
+
             },
             {
                 label4: "Profile",

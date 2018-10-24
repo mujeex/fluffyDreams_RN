@@ -2,9 +2,9 @@ import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from "react-native"
 
 
-const Button = () => (
+const Button = (props) => (
     
-    <TouchableOpacity >
+    <TouchableOpacity onPress={()=>props.onPress()}>
           <View style= {styles.button}>
           <Text style={styles.buttonText}>Add to cart</Text>
           </View>

@@ -11,16 +11,18 @@ class ListItems extends Component {
 
    
     //The purpose of this function is to set styles for the targeted index
-    highlightStateHandler = () =>{     
+    highlightStateHandler = (options) =>{     
 
             if(!this.state.highlighted){
                 this.setState({
-                    highlighted:true
+                    highlighted:true,
+                    console:this.props.priceEdit(options,true)
                 })
             }
             else{
                 this.setState({
-                    highlighted:false
+                    highlighted:false,
+                    console:this.props.priceEdit(options,false)
                 })
             }
         }  
@@ -31,16 +33,17 @@ class ListItems extends Component {
         // console.log(i)
         // this.indexStateHandler(i)
         // console.log(this.state.highlighted)
-        this.highlightStateHandler()
+        this.highlightStateHandler(options)
+        // console.log('index of toppings array: '+ i)
        
-        this.props.priceEdit(options)
+        
     }
 
    
     render(){
-       const {options,i} = this.props
+       const {options,index} = this.props
         return(
-            <TouchableOpacity onPress={()=> this.highlightHandler(i, options)}>
+            <TouchableOpacity onPress={()=> this.highlightHandler(index, options)}>
             <View style={this.state.highlighted?styles.highlighted:styles.options} > <Text style={styles.text}>{options.name}</Text> </View>
             </TouchableOpacity>
         )

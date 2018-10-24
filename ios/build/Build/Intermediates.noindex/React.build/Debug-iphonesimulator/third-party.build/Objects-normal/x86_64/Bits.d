@@ -1,13 +1,13 @@
 dependencies: \
-  /Users/apple/Documents/Vscode/React-Native/Fluffy/node_modules/react-native/third-party/folly-2016.10.31.00/folly/Bits.cpp \
-  /Users/apple/Documents/Vscode/React-Native/Fluffy/node_modules/react-native/React/../third-party/folly-2016.10.31.00/folly/Bits.h \
-  /Users/apple/Documents/Vscode/React-Native/Fluffy/node_modules/react-native/React/../third-party/folly-2016.10.31.00/folly/Portability.h \
-  /Users/apple/Documents/Vscode/React-Native/Fluffy/node_modules/react-native/React/../third-party/folly-2016.10.31.00/folly/portability/Config.h \
-  /Users/apple/Documents/Vscode/React-Native/Fluffy/node_modules/react-native/React/../third-party/folly-2016.10.31.00/folly/CPortability.h \
-  /Users/apple/Documents/Vscode/React-Native/Fluffy/node_modules/react-native/React/../third-party/folly-2016.10.31.00/folly/portability/Builtins.h \
-  /Users/apple/Documents/Vscode/React-Native/Fluffy/node_modules/react-native/React/../third-party/folly-2016.10.31.00/folly/Assume.h \
-  /Users/apple/Documents/Vscode/React-Native/Fluffy/node_modules/react-native/React/../third-party/folly-2016.10.31.00/folly/detail/BitsDetail.h \
-  /Users/apple/Documents/Vscode/React-Native/Fluffy/node_modules/react-native/React/../third-party/folly-2016.10.31.00/folly/detail/BitIteratorDetail.h \
+  /Users/apple/Documents/Vscode/React-Native/Fluffy/node_modules/react-native/third-party/folly-2016.09.26.00/folly/Bits.cpp \
+  /Users/apple/Documents/Vscode/React-Native/Fluffy/node_modules/react-native/React/../third-party/folly-2016.09.26.00/folly/Bits.h \
+  /Users/apple/Documents/Vscode/React-Native/Fluffy/node_modules/react-native/React/../third-party/folly-2016.09.26.00/folly/Portability.h \
+  /Users/apple/Documents/Vscode/React-Native/Fluffy/node_modules/react-native/React/../third-party/folly-2016.09.26.00/folly/portability/Config.h \
+  /Users/apple/Documents/Vscode/React-Native/Fluffy/node_modules/react-native/React/../third-party/folly-2016.09.26.00/folly/CPortability.h \
+  /Users/apple/Documents/Vscode/React-Native/Fluffy/node_modules/react-native/React/../third-party/folly-2016.09.26.00/folly/portability/Builtins.h \
+  /Users/apple/Documents/Vscode/React-Native/Fluffy/node_modules/react-native/React/../third-party/folly-2016.09.26.00/folly/Assume.h \
+  /Users/apple/Documents/Vscode/React-Native/Fluffy/node_modules/react-native/React/../third-party/folly-2016.09.26.00/folly/detail/BitsDetail.h \
+  /Users/apple/Documents/Vscode/React-Native/Fluffy/node_modules/react-native/React/../third-party/folly-2016.09.26.00/folly/detail/BitIteratorDetail.h \
   /Users/apple/Documents/Vscode/React-Native/Fluffy/node_modules/react-native/React/../third-party/boost_1_63_0/boost/iterator/iterator_adaptor.hpp \
   /Users/apple/Documents/Vscode/React-Native/Fluffy/node_modules/react-native/React/../third-party/boost_1_63_0/boost/static_assert.hpp \
   /Users/apple/Documents/Vscode/React-Native/Fluffy/node_modules/react-native/React/../third-party/boost_1_63_0/boost/config.hpp \
@@ -213,5 +213,5 @@ dependencies: \
   /Users/apple/Documents/Vscode/React-Native/Fluffy/node_modules/react-native/React/../third-party/boost_1_63_0/boost/mpl/aux_/preprocessed/gcc/template_arity.hpp \
   /Users/apple/Documents/Vscode/React-Native/Fluffy/node_modules/react-native/React/../third-party/boost_1_63_0/boost/mpl/aux_/preprocessed/gcc/full_lambda.hpp \
   /Users/apple/Documents/Vscode/React-Native/Fluffy/node_modules/react-native/React/../third-party/boost_1_63_0/boost/mpl/aux_/preprocessed/gcc/apply.hpp \
-  /Users/apple/Documents/Vscode/React-Native/Fluffy/node_modules/react-native/React/../third-party/folly-2016.10.31.00/folly/Likely.h \
-  /Users/apple/Documents/Vscode/React-Native/Fluffy/node_modules/react-native/React/../third-party/folly-2016.10.31.00/folly/CpuId.h
+  /Users/apple/Documents/Vscode/React-Native/Fluffy/node_modules/react-native/React/../third-party/folly-2016.09.26.00/folly/Likely.h \
+  /Users/apple/Documents/Vscode/React-Native/Fluffy/node_modules/react-native/React/../third-party/folly-2016.09.26.00/folly/CpuId.h

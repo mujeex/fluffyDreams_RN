@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet,Button} from "react-native"
+import CartIcon from "../cartScreenComp/cartIcon"
 
 const ItemData = (props) => (
 
@@ -7,6 +8,7 @@ const ItemData = (props) => (
 
      <View style={styles.backButton}>
         <Button onPress={()=> props.onPress()} title={props.title}/>
+        <CartIcon/>
       </View>
 
     <View style={styles.itemHeader}>
@@ -29,7 +31,7 @@ const ItemData = (props) => (
     <Text style={styles.size}>{props.data.size}</Text>
     </View>
     <View style= {styles.toppingsContainer}>
-    {props.data.toppings.map( (toppings, i) => (
+    {props.data.toppings.map((toppings, i) => (
         <Text style={styles.toppingsItem} key={i}>{toppings}</Text>
     )
     )}
@@ -53,7 +55,13 @@ const styles= StyleSheet.create({
         alignItems: 'center',
     },
     backButton:{
-
+        flexDirection: 'row',
+        width: '100%',
+        height: 40,
+        borderWidth: 1,
+        borderColor: "black",
+        justifyContent: 'space-between',
+        alignItems: 'center',
     },
     itemHeader:{
         flex: 1,
