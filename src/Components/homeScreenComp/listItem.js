@@ -1,6 +1,7 @@
 import React from 'react'
 import {View, Image, Text, StyleSheet, TouchableOpacity, Dimensions} from "react-native"
 const Width= Dimensions.get('window').width
+import {robotoWeights} from 'react-native-typography'
 
 
 const listItem = (props) => (
@@ -13,10 +14,10 @@ const listItem = (props) => (
           
         </View>
         <View style={{flex:1}}>
-        <Text>{props.cakes.name}</Text>
-        <Text>{props.cakes.price}</Text>
-        <Text>{props.cakes.flavor}</Text>
-        <Text>{props.cakes.size}</Text>
+        <Text style={robotoWeights.medium}>{props.cakes.name}</Text>
+        <Text style={robotoWeights.light}>{props.cakes.price}</Text>
+        <Text style={robotoWeights.light}>{props.cakes.flavor}</Text>
+        <Text style={robotoWeights.light}>{props.cakes.size}</Text>
         </View>
       </View>
   </TouchableOpacity>

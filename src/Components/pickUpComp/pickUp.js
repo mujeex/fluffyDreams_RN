@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import { View, Text,StyleSheet } from 'react-native';
+import FlexButton from "../UI/FlexButton"
 
  class PickUp extends Component {
 
+
+   
+
   render() {
     return (
-      <View style={this.props.bodyStyle}>
-        <View style={styles.bakery}>
+      <View style={[this.props.bodyStyle , styles.container]}>
+      <View>
+      <View style={styles.bakery}>
             <Text style={styles.labels}>Bakery</Text>
             <Text style={styles.bold}>No 5 Tukur Road</Text>
         </View>
@@ -24,11 +29,28 @@ import { View, Text,StyleSheet } from 'react-native';
         <Text style={styles.bold}>(862)15140221630</Text>
         </View>
       </View>
+
+      <View style={styles.buttonContainer}>
+          <FlexButton label='PROCEED' onPress={()=>this.props.onNavigation()}/>
+      </View>
+       
+      </View>
     );
   }
 }
 
 const styles= StyleSheet.create({
+    container:{
+        alignItems:'center',
+        justifyContent:'space-between',
+        borderWidth:1,
+        borderColor:'red'
+
+    },
+    buttonContainer:{ 
+        height: 60,
+        width: '100%'
+    },
     bakery:{
         marginTop: 10,
         marginLeft: 10,
@@ -50,7 +72,8 @@ const styles= StyleSheet.create({
     },
     bold:{
         fontSize: 20
-    }
+    },
+
 })
 
 export default PickUp

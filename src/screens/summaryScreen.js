@@ -2,15 +2,26 @@ import React, { Component } from 'react'
 import {  View , StyleSheet, ScrollView, Text, TouchableOpacity} from 'react-native'
 import {connect} from "react-redux"
 import SummaryList from "../Components/summaryScreenComp/summaryCartList"
+import {addToDatabase} from '../Store/Actions/index'
 
  class SummaryScreen extends Component {
 
-componentDidMount = () => {
-  console.log(this.props.size)
-  console.log(this.props.total)
-}
+// componentDidMount = () => {
+//   console.log(this.props.size)
+//   console.log(this.props.total)
+// }
+static navigatorStyle = {
+    drawUnderNavBar: false,
+    navBarTranslucent: true,
+    navBarHidden: false,
+      tabBarHidden:true,
+     drawUnderTabBar: true
+  };
+
 
 navigationHandler = () => {
+    //drop function to add checkout items to the server and remove when user 
+    this.props.atdb(this.props.checkout)
     this.props.navigator.push({
         screen: "fluffy.ShippingScreen",
         title: "YOUR ORDER",
@@ -116,6 +127,11 @@ const styles= StyleSheet.create({
 
 })
 
+const mapDispatchToProps = dispatch =>{
+    return{
+        atdb: (items)=> dispatch(addToDatabase(items))
+    }
+}
 
 const mapStateToProps = state => {
     return{
@@ -123,4 +139,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(SummaryScreen)
+export default connect(mapStateToProps,mapDispatchToProps)(SummaryScreen)

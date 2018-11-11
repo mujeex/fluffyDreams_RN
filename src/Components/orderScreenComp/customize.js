@@ -4,7 +4,7 @@ import { Text, View ,StyleSheet, Image, Platform, ScrollView} from 'react-native
 import Icon from "react-native-vector-icons/Ionicons"
 import Selections from "./selections"
 import Toppings from "./Toppings/toppings"
-import ItemCounter from "./itemCounter"
+
 
  class Customize extends Component {
  
@@ -22,7 +22,7 @@ import ItemCounter from "./itemCounter"
             <Selections priceEdit= {this.props.priceHandler} label="Size" options={this.props.customs.Sizes}/>
             <Toppings priceEdit= {this.props.priceHandler} label="Toppings" options={this.props.customs.Toppings}/>
             <View style={styles.counter}>
-            <ItemCounter/>
+           
             </View>
            
         </ScrollView>

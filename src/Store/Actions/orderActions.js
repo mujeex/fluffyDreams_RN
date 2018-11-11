@@ -1,4 +1,6 @@
-import {ADD_SELECTED, CLEAR_SELECTED , ITEM_SELECT ,UPDATE_FLAVOR ,UPDATE_SIZE, COUNTER_INCREASE,COUNTER_DECREASE,PUSH_TO_CART,UPDATE_TOPPINGS,REUPDATE_TOPPINGS} from "./actionTypes"
+import {ADD_SELECTED, CLEAR_SELECTED , ITEM_SELECT ,UPDATE_FLAVOR ,UPDATE_SIZE, 
+    COUNTER_INCREASE,COUNTER_DECREASE,PUSH_TO_CART,UPDATE_TOPPINGS,REUPDATE_TOPPINGS,
+    UPDATED_PRICE,REMOVE_FROM_CART} from "./actionTypes"
 
 export const addSelected= (item) => {
     return {
@@ -63,5 +65,19 @@ export const ReUpdateToppings =(topping) =>{
     return{
         type: REUPDATE_TOPPINGS,
         topping
+    }
+}
+
+export const UpdatedPrice =(price) => {
+    return{
+        type: UPDATED_PRICE,
+        price
+    }
+}
+
+export const removeFromCart =(id) => {
+    return{
+        type: REMOVE_FROM_CART,
+        id
     }
 }

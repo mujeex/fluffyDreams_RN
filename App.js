@@ -11,6 +11,8 @@ import ProfileInfoScreen from "./src/screens/ProfileInfoScreen"
 import OrderScreen from "./src/screens/OrderScreen"
 import SummaryScreen from "./src/screens/summaryScreen"
 import ShippingScreen from "./src/screens/shippingsScreen"
+import PaymentScreen from './src/screens/paymentScreen'
+import ConfirmationScreen from './src/screens/confrimationScreen'
 import configureStore from "./src/Store/configureStore"
 
 
@@ -26,34 +28,36 @@ store,
 Provider
 )
 
-Navigation.registerComponent("fluffy.ProfileScreen",
- ()=> ProfileScreen,
+Navigation.registerComponent("fluffy.ProfileScreen",()=> ProfileScreen,
  store,
  Provider)
 
- Navigation.registerComponent("fluffy.CartScreen",
- ()=> CartScreen,
+ Navigation.registerComponent("fluffy.CartScreen",()=> CartScreen,
  store,
  Provider)
 
- Navigation.registerComponent("fluffy.SummaryScreen", 
-()=>SummaryScreen,
+ Navigation.registerComponent("fluffy.SummaryScreen", ()=>SummaryScreen,
 store,
 Provider)
 
 
-Navigation.registerComponent("fluffy.ShippingScreen", 
-()=>ShippingScreen,
+Navigation.registerComponent("fluffy.ShippingScreen", ()=>ShippingScreen,
 store,
 Provider)
 
-Navigation.registerComponent("fluffy.ProfileInfoScreen", 
-()=>ProfileInfoScreen,
+Navigation.registerComponent("fluffy.ProfileInfoScreen", ()=>ProfileInfoScreen,
 store,
 Provider)
 
-Navigation.registerComponent("fluffy.OrderScreen", 
-()=> OrderScreen,
+Navigation.registerComponent("fluffy.PaymentScreen", ()=>PaymentScreen,
+store,
+Provider)
+
+Navigation.registerComponent("fluffy.ConfirmationScreen", ()=>ConfirmationScreen,
+store,
+Provider)
+
+Navigation.registerComponent("fluffy.OrderScreen", ()=> OrderScreen,
 store,
 Provider)
 

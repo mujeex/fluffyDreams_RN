@@ -4,6 +4,7 @@ import { connect } from "react-redux"
 import Icon from "react-native-vector-icons/Ionicons" 
 import {addSelected} from "../Store/Actions/index"
 import initState from "../Store/Local/PriceList"
+import {robotoWeights} from 'react-native-typography'
 
 
 import SpecialOffer from "../Components/homeScreenComp/SOS/specialOffers"
@@ -73,7 +74,7 @@ class HomeScreen extends Component {
   <View style={{flex: 1}}>
   <View style={{height: 50, width: Width, flexDirection: 'row', justifyContent: 'space-between', borderWidth: 2, borderColor: "black", marginTop: 10, alignItems: "center"}}>
     <View style={{padding: 5, marginLeft: 5,}}>
-    <Text style={{ fontWeight: "bold"}}> MARKET</Text>
+    <Text style={robotoWeights.regular}> MARKET</Text>
     </View>
 
     <View style={{padding: 5, marginRight: 5,}}>

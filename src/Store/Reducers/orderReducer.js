@@ -1,11 +1,11 @@
-import {ADD_SELECTED , CLEAR_SELECTED, UPDATE_FLAVOR, UPDATE_SIZE,COUNTER_INCREASE,COUNTER_DECREASE,PUSH_TO_CART,UPDATE_TOPPINGS,REUPDATE_TOPPINGS} from "../Actions/actionTypes"
+import {ADD_SELECTED , CLEAR_SELECTED, UPDATE_FLAVOR, UPDATE_SIZE,COUNTER_INCREASE,COUNTER_DECREASE,PUSH_TO_CART,UPDATE_TOPPINGS,REUPDATE_TOPPINGS,UPDATED_PRICE,REMOVE_FROM_CART} from "../Actions/actionTypes"
 
 
 const initState= {
    
         id:0,
        selected:null,
-       itemCounter:0,
+
 
        cart:[],
 
@@ -70,17 +70,17 @@ const reducer = (state=initState, action) =>{
                 toppings: state.selected.toppings.filter(toppings=> toppings !== action.topping)
             }
         }
-       case COUNTER_INCREASE:
-       return{
-           ...state,
-           itemCounter: state.itemCounter+1
-       }
+    //    case COUNTER_INCREASE:
+    //    return{
+    //        ...state,
+    //        itemCounter: state.itemCounter+1
+    //    }
 
-       case COUNTER_DECREASE:
-       return{
-           ...state,
-           itemCounter: state.itemCounter-1
-       }
+    //    case COUNTER_DECREASE:
+    //    return{
+    //        ...state,
+    //        itemCounter: state.itemCounter-1
+    //    }
 
        case PUSH_TO_CART:
 
@@ -98,6 +98,21 @@ const reducer = (state=initState, action) =>{
            cart: newCopy
         //    [...state.cart,action.item],
 
+       }
+       case UPDATED_PRICE:
+       return{
+           ...state,
+        //    cart :
+       
+           selected:{
+               ...state.selected,
+               price: action.price
+           }
+       }
+       case REMOVE_FROM_CART:
+       return{
+           ...state,
+           cart: state.cart.filter(cart => cart.id !== action.id)
        }
         default:
         return state

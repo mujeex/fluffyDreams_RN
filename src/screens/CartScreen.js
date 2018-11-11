@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { View, StyleSheet,ScrollView,Text, TouchableOpacity} from 'react-native';
 import CartList from "../Components/cartScreenComp/cartList"
 import {connect} from "react-redux"
-import {addItem,removeItem} from "../Store/Actions/index"
+import {addItem,removeItem,removeFromCart} from "../Store/Actions/index"
+import Auth from '../Components/authComp/auth'
 
 
  class CartContainer extends Component {
@@ -24,7 +25,7 @@ import {addItem,removeItem} from "../Store/Actions/index"
     })
   }
 
-  getItemPrice= (item, bool) =>{
+  getItemPrice= (quantity,item, bool) =>{
     // console.log(item)
     // console.log(bool)
     // let checkout=[]
@@ -34,7 +35,7 @@ import {addItem,removeItem} from "../Store/Actions/index"
       this.props.add(item)
       this.setState(prevState => {
         return{
-          total: prevState.total+item.price,
+          total: prevState.total+(item.price * quantity),
           // checkoutCart: checkout
         }
       })
@@ -43,14 +44,23 @@ import {addItem,removeItem} from "../Store/Actions/index"
       // checkout.slice()
       this.setState(prevState => {
         return{
-          total:prevState.total-item.price
+          total:prevState.total-(item.price * quantity)
         }
       })
     }
     console.log(this.props.checkout)
 
     
-  } 
+  }
+  
+  
+  deleteHandler= (id) => {
+    this.props.delete(id)
+    console.log(id)
+  }
+
+  
+  
   
 
   render() {
@@ -88,23 +98,28 @@ if(this.props.checkout.length != 0){
 
 // =================Conditonal render of component=================
 
-    if(this.props.cartItems.length == 0){
+
+    if(!this.props.auth){
       return(
-          <Text>Sorry cart empty</Text>
+        <Auth/>
       )
-  }else{
+  }else if(this.props.cartItems.length == 0){
     return (
-      <View style={styles.container}>
-
-
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
-      {this.props.cartItems.map((cartItems, index)=>(
-        <CartList getPrice={this.getItemPrice} cartItems={cartItems} key={index}/> )
-        )}
-      </ScrollView>
-      {button}
-      </View>
+      <Text>Sorry cart empty</Text>
     );
+      }
+      else{
+        return(
+          <View style={styles.container}>
+
+          <ScrollView contentContainerStyle={styles.scrollContainer}>
+          {this.props.cartItems.map((cartItems, index)=>(
+            <CartList delete={this.deleteHandler} getPrice={this.getItemPrice} cartItems={cartItems} key={index}/> )
+            )}
+          </ScrollView>
+          {button}
+          </View>
+        )
       }
   }
 }
@@ -188,14 +203,16 @@ const styles= StyleSheet.create({
 const mapStateToProps = state =>{
   return{
       cartItems: state.order.cart,
-      checkout: state.cart.checkoutCart
+      checkout: state.cart.checkoutCart,
+      auth: state.auth.login
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return{
     add: (item) => dispatch(addItem(item)),
-    remove: (item) => dispatch(removeItem(item))
+    remove: (item) => dispatch(removeItem(item)),
+    delete:(id) => dispatch(removeFromCart(id))
   }
 }
 

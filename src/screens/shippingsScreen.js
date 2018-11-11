@@ -4,10 +4,30 @@ import Delivery from "../Components/DeliverComp/delivery"
 import PickUp from "../Components/pickUpComp/pickUp"
 
  class ShippingScreen extends Component {
+
+    static navigatorStyle = {
+        drawUnderNavBar: false,
+        navBarTranslucent: true,
+        navBarHidden: false,
+          tabBarHidden:true,
+         drawUnderTabBar: true
+      };
+
   
     state={
         delivery: true,
         pickup: false
+    }
+
+    handlePayment = () => {
+
+
+        this.props.navigator.push({
+            screen: "fluffy.PaymentScreen",
+            title:'Payment',
+            passProps: {
+                total:this.props.total}
+        })
     }
 
     navigationHandler = ()=>{
@@ -24,10 +44,10 @@ import PickUp from "../Components/pickUpComp/pickUp"
         }
     }
   render() {
-      let display= (<Delivery bodyStyles={styles.body}/>)
+      let display= (<Delivery bodyStyles={styles.body} onNavigation={this.handlePayment}/>)
 
       if(this.state.pickup){
-          display = (<PickUp bodyStyles={styles.body}/>)
+          display = (<PickUp bodyStyles={styles.body} onNavigation={this.handlePayment}/>)
       }
     return (
       <View style={styles.container}>
@@ -60,7 +80,10 @@ import PickUp from "../Components/pickUpComp/pickUp"
         </View>
 
         <View style={styles.body}>
-            {display}
+        <View style={{flex:1}}>
+        {display}
+        </View>
+           
         </View>
         </View>
       </View>

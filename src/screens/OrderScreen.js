@@ -4,7 +4,7 @@ import { View, ImageBackground, StyleSheet, Dimensions } from 'react-native'
 import ItemData from "../Components/orderScreenComp/itemData"
 import ButtonSlide from "../Components/orderScreenComp/button"
 import Customize  from "../Components/orderScreenComp/customize"
-import {clearSelected,updateFlavor,updateSize,pushToCart,updateToppings, ReUpdateToppings} from "../Store/Actions/index"
+import {clearSelected,updateFlavor,updateSize,pushToCart,updateToppings, ReUpdateToppings,UpdatedPrice} from "../Store/Actions/index"
 import {analyse,add,toppingsfunc} from "../priceAnalyser/analyser"
 
 
@@ -27,18 +27,21 @@ state={
   flavor:null,
   size:null,
   toppings:null,
-  total: null
+  total: null,
+  priceUpdate:null
+
 }
 
 addToCartHandler = () => {
-  this.props.pushCart(this.props.selected)
-  
+  // price variable isn't being updated from the redux store because the current capabilities of redux isn't
+  //enough to accomodate the logic needed for it's update. Hence, it got stored in the components local state and it is
+  // now going to be pushed to the redux store before the whole updated customized object by the user gets pushed to the store.
 
-  // this.props.navigator.push(
-  //   {
-  //     screen: "fluffy.CartScreen"
-  //   }
-  // )
+ 
+  // console.log(this.props.selected)
+  this.props.pushCart(this.props.selected)
+
+  
 }
 
     popNavigation = () => {
@@ -54,6 +57,7 @@ addToCartHandler = () => {
         //dispatch action to update the redux selected item
         console.log(options.name)
         this.props.flavUpdate(options.name)
+       
           i=options.price
         if(bool){
           console.log("true: "+ this.state.total)
@@ -61,23 +65,12 @@ addToCartHandler = () => {
             return{
               ...prevState,
               flavor:i,
-              total:i+prevState.size+prevState.toppings
+              total:i+prevState.size+prevState.toppings,
+              priceUpdate: this.props.updPrice(i+prevState.size+prevState.toppings)
             }
           })
         
-        }else{
-          // this.setState(prevState=>{
-          //   return{
-          //     ...prevState,
-          //     flavor:i,
-          //     total:i-prevState.size+prevState.toppings
-          //   }
-          // })
-          console.log("false: "+this.state.total)
         }
-        
-        
-       
         break;
 
         case "size":
@@ -87,39 +80,33 @@ addToCartHandler = () => {
           return{
             ...prevState,
             size:i,
-            total:prevState.flavor+i+prevState.toppings
+            total:prevState.flavor+i+prevState.toppings,
+            priceUpdate: this.props.updPrice(prevState.flavor+i+prevState.toppings)
           }
         })
         break;
         
         case "toppings":
-
-        
-        console.log(options.name)
+        // console.log(options.name)
         let added;
         let newHolder=[]
         let holder
         //the holder variable below holds the value of the current state of the toppings in the component state
         holder=this.state.toppingsholder
-        
-        // console.log("added: "+ added)
-       // console.log(holder)
          
-       
         if(bool){
           let exist= this.props.selected.toppings.filter(selected => selected == options.name)
           if(exist == 0){
             holder.push(options.price)
             newHolder=holder
-  
-            console.log("After push: "+newHolder)
             added = add(newHolder)
             this.setState(prevState=>{
              return{
                ...prevState,
                toppingsholder:newHolder,
                toppings:added,
-               total:prevState.flavor+prevState.size+added
+               total:prevState.flavor+prevState.size+added,
+               priceUpdate: this.props.updPrice(prevState.flavor+prevState.size+added)
              }
            }) 
           }
@@ -139,38 +126,30 @@ addToCartHandler = () => {
               ...prevState,
               toppingsholder:newHolder,
               toppings:added,
-              total:prevState.flavor+prevState.size+added
+              total:prevState.flavor+prevState.size+added,
+              priceUpdate: this.props.updPrice(prevState.flavor+prevState.size+added)
             }
           }) 
           this.props.ReUpdate(options.name)
         }
-        
         
         break;
         default:
         return null
       }
       
-     
+      
 
-      // console.log(options)
-      // console.log(options.price)
-      // switch()
     }
     componentWillMount = () => {
       // console.log(this.props.selectedCake)
       const price = analyse(this.props.selectedCake.flavor,this.props.selectedCake.size)
       let holder= toppingsfunc(this.props.selectedCake.toppings)
-      // console.log(Array.isArray(holder))
-      // console.log(holder)
-      // console.log(holder.push(8))
-      // console.log(holder)
-      // console.log("CWM holder: "+holder)
       let added = add(holder)
       let flavor= price[0]
       let size= price[1]
       let toppings= added
-      // console.log()
+
       this.setState(prevState=>{
         return{
           ...prevState,
@@ -183,13 +162,12 @@ addToCartHandler = () => {
         }
 
       })
-      // this.props.update(price)
 
+      console.log(this.state.total)
     };
-    
-    
-
-  
+    componentDidMount = () => {
+      
+    };
     
   
   
@@ -197,8 +175,6 @@ addToCartHandler = () => {
   render() {
     return (
       <ImageBackground source={this.props.selected.image} style={styles.backgroundImage}>
-
-     
 
       <View style={styles.content}>
       <ItemData  title= "Back" onPress={this.popNavigation} data={this.props.selected} price={this.state.total}/>
@@ -250,9 +226,7 @@ const styles= StyleSheet.create({
   },
   customize:{
     width: '100%',
-    marginTop: 10,
-    // transform: [{translateY: 100} ]
-    
+    marginTop: 10,    
   }
    
 })
@@ -264,9 +238,8 @@ const mapDispatchToProps = dispatch => {
     sizeUpdate: (size) => dispatch(updateSize(size)),
     toppingsUpdate: (topping)=> dispatch(updateToppings(topping)),
     ReUpdate: (topping) => dispatch(ReUpdateToppings(topping)),
-    pushCart: (item)=> dispatch(pushToCart(item))
-    // update: (price)=> dispatch(updatePrice(price))
-
+    pushCart: (item)=> dispatch(pushToCart(item)),
+    updPrice: (price)=> dispatch(UpdatedPrice(price))
   }
 }
 
@@ -274,8 +247,6 @@ const mapStateToProps = state =>{
   return{
     selected: state.order.selected,
     highlight:state.order.Rxhiglighted,
-    // cart: state.order.cart
-    // calcPrice:state.cart.total
   }
 }
 
