@@ -7,6 +7,7 @@ import FlexButton from '../UI/FlexButton'
 import AddressBox from './newAddressBox'
 import ExistingAddress from './existingAddress'
 
+
 // const HEIGHT= Dimensions.get('window').height
 
  class Delivery extends Component {
@@ -38,7 +39,7 @@ import ExistingAddress from './existingAddress'
 <View style={{justifyContent:'center', flex:1,alignItems:'center'}}>
 
  <ExistingAddress address='Ahmadu Bello Way' pobox='12789' gra='Nassarawa G.R.A' city='Kano'/>
-<ExistingAddress address='Ahmadu Bello Way' pobox='12789' gra='Nassarawa G.R.A' city='Kano'/>
+<ExistingAddress address='Hadeja Road' pobox='18749' gra='Nassarawa G.R.A' city='Kano'/>
    
 {display}
 {/* this is to be displayed after the edit has been saved from the previous block */}
@@ -78,7 +79,8 @@ const styles=StyleSheet.create({
     height: 60,
     width:'100%',
     position: 'absolute',
-    top: 350,
+    top: 340,
+
     // backgroundColor: 'white'
   }
 })

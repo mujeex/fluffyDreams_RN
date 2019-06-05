@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import { View, Text , StyleSheet, Image,TouchableOpacity} from 'react-native';
 import Delivery from "../Components/DeliverComp/delivery"
 import PickUp from "../Components/pickUpComp/pickUp"
+import AvenirMedium from '../Components/UI/AvenirMedium'
+import AvenirHeavy from '../Components/UI/AvenirHeavy'
+import AvenirLight from '../Components/UI/AvenirLight'
+import AvenirBlack from '../Components/UI/AvenirBlack'
+
 
  class ShippingScreen extends Component {
 
@@ -26,7 +31,9 @@ import PickUp from "../Components/pickUpComp/pickUp"
             screen: "fluffy.PaymentScreen",
             title:'Payment',
             passProps: {
-                total:this.props.total}
+                total:this.props.total,
+            size: this.props.size
+            }
         })
     }
 
@@ -56,13 +63,13 @@ import PickUp from "../Components/pickUpComp/pickUp"
 
         {/* this is the payment ifo */}
         <View style={styles.paymentDetails}>
-        <View style={styles.total}><Text style={styles.text}>${this.props.total}</Text></View>
-        <View style={styles.size}><Text style={styles.text1}>{this.props.size} item(s)</Text></View>
+        <View style={styles.total}><AvenirHeavy Styles={styles.text}>${this.props.total}</AvenirHeavy></View>
+        <View style={styles.size}><AvenirMedium Styles={styles.text1}>{this.props.size} item(s)</AvenirMedium></View>
         </View>
 
         {/* And this is the User Prof */}
         <View style={styles.userProf}>
-        <View style={styles.name}><Text>Mujahid Bappai</Text></View>
+        <View style={styles.name}><AvenirHeavy Styles={{fontSize:20}}>Mujahid</AvenirHeavy></View>
 
         <View style={styles.photoView}>
         <View style={styles.photo}><Image style={styles.image} source={require('../Assets/avatar/business man.png')}/></View>
@@ -75,8 +82,18 @@ import PickUp from "../Components/pickUpComp/pickUp"
         <View style={styles.screens}>
 
         <View style={styles.headers}>
-        <TouchableOpacity style={styles.delivery} onPress={this.navigationHandler}><View ><Text>Delivery</Text></View></TouchableOpacity>
-       <TouchableOpacity style={styles.pickUp} onPress={this.navigationHandler}><View ><Text>Pick Up</Text></View></TouchableOpacity> 
+        <TouchableOpacity style={this.state.delivery?styles.deliveryLined:styles.deliveryNoLined}
+         onPress={this.navigationHandler}>
+         <View ><AvenirBlack 
+          Styles={this.state.delivery?{fontFamily: 'Avenir-Black',color:'#0A539B'}:{fontFamily: 'Avenir-Medium'}}>Delivery</AvenirBlack></View>
+         </TouchableOpacity>
+
+       <TouchableOpacity style={this.state.pickup?styles.pickUpLined:styles.pickUpNoLined} 
+       onPress={this.navigationHandler}>
+       <View ><AvenirBlack 
+       Styles={this.state.pickup?{fontFamily: 'Avenir-Black',color:'#0A539B'}:{fontFamily: 'Avenir-Medium',}}>Pick Up</AvenirBlack></View>
+       </TouchableOpacity>
+
         </View>
 
         <View style={styles.body}>
@@ -102,7 +119,7 @@ const styles= StyleSheet.create({
     },
     paymentDetails:{
         flex: 1,
-        backgroundColor:'orange',
+        backgroundColor:'white',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -121,11 +138,12 @@ const styles= StyleSheet.create({
         alignItems: 'center',
     },
     text:{
-        fontSize: 20,
-        color: 'white'
+        fontSize: 25,
+        color: 'black',
+        fontFamily: 'Avenir-HeavyOblique',
     },
     text1:{
-        fontSize: 10,
+        fontSize: 20,
         color: 'black'
     },
     userProf:{
@@ -176,15 +194,29 @@ image:{
         flexDirection: 'row',
 
     },
-    delivery:{
+    deliveryLined:{
         width: '50%',
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        borderBottomColor: 'red',
-        borderBottomWidth: 1,
+        borderBottomColor: '#0A539B',
+        borderBottomWidth: 2,
     },
-    pickUp:{
+    deliveryNoLined:{
+        width: '50%',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    pickUpLined:{
+        width: '50%',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderBottomColor: '#0A539B',
+        borderBottomWidth: 2,
+    },
+    pickUpNoLined:{
         width: '50%',
         height: '100%',
         justifyContent: 'center',

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text ,StyleSheet,TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons'
+import AvenirMedium from './AvenirMedium'
 
  class SelectionBox extends Component {
 
   state={
-
     selected: false
   }
 
@@ -29,7 +29,7 @@ import Icon from 'react-native-vector-icons/Ionicons'
 
       <View style={styles.leftBlock}>
       <View style={styles.icon}> <Icon name={this.props.name} size={20}/></View>
-        <View style={styles.textContainer}><Text style={styles.text}>{this.props.label}</Text></View>
+        <View style={styles.textContainer}><AvenirMedium style={styles.text}>{this.props.label}</AvenirMedium></View>
       </View>
        
         <View style={styles.circleContainer}>
@@ -47,8 +47,13 @@ const styles=StyleSheet.create({
      flexDirection: 'row',
      alignItems: 'center',
      justifyContent: 'space-around',
-     borderWidth: 0.4,
-     borderColor: 'black',
+     shadowColor: '#0A539B',
+        shadowOpacity: 0.2,
+        shadowOffset: {
+            height: 3
+        },
+        backgroundColor:'white',
+        borderRadius: 15,
  },
  leftBlock:{
      flexDirection: 'row',
@@ -83,18 +88,16 @@ const styles=StyleSheet.create({
  },
  circleNoFill:{
      borderRadius: 100,
-     borderWidth: 1,
-     borderColor: 'black',
-     height: 20,
-     width: 20
+     borderWidth: 0.4,
+     borderColor: '#0A539B',
+     height: 15,
+     width: 15
  },
  circleFilled:{
     borderRadius: 100,
-    borderWidth: 1,
-    borderColor: 'black',
-    backgroundColor: 'red',
-    height: 20,
-    width: 20
+    backgroundColor: '#0A539B',
+    height: 15,
+    width: 15
  }
 
 })

@@ -1,5 +1,6 @@
 import React, {Component} from "react"
 import {Text, View, TouchableOpacity,StyleSheet} from "react-native"
+import AvenirMedium from '../../UI/AvenirMedium'
 
 class ListItems extends Component {
     state={
@@ -44,7 +45,7 @@ class ListItems extends Component {
        const {options,index} = this.props
         return(
             <TouchableOpacity onPress={()=> this.highlightHandler(index, options)}>
-            <View style={this.state.highlighted?styles.highlighted:styles.options} > <Text style={styles.text}>{options.name}</Text> </View>
+            <View style={this.state.highlighted?styles.highlighted:styles.options} > <AvenirMedium Styles={this.state.highlighted?styles.textHighlighted:styles.text}>{options.name}</AvenirMedium> </View>
             </TouchableOpacity>
         )
     }
@@ -53,24 +54,30 @@ class ListItems extends Component {
 
 const styles= StyleSheet.create({
     options:{
-        borderRadius: 10,
+        borderRadius: 5,
         padding: 5,
-        borderWidth: 1,
-        borderColor: "#d0b783",
+        borderWidth: 1.5,
+        borderColor: "#0A539B",
         // backgroundColor: ""
         
     },
     text:{
         color: 'black',
-        textAlign: 'center'
+        textAlign: 'center',
+        fontSize: 12
+    },
+    textHighlighted:{
+        color: 'white',
+        textAlign: 'center',
+        fontSize: 12
     },
 
     highlighted:{
-        borderRadius: 10,
+        borderRadius: 5,
         padding: 5,
-        borderWidth: 1,
         // borderColor: "#d0b783",
-        backgroundColor: "#d0b783"
+        backgroundColor: "#0A539B",
+        // color: 'white'
 
     }
 })

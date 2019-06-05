@@ -1,36 +1,61 @@
 import React, { Component } from 'react'
-import { Text, View,StyleSheet } from 'react-native'
+import { Text, View,StyleSheet,TouchableOpacity } from 'react-native'
+import AvenirMedium from '../UI/AvenirMedium'
 
 export default class existingAddressBox extends Component {
+ state={
+   selected: false
+ }
+
+ selectHandler = () => {
+   this.setState(prevState=> ({
+     selected: !prevState.selected
+   }))
+ }
   render() {
     return (
-        <View style={styles.addressContainer}>
+        <TouchableOpacity onPress={()=>this.selectHandler()} style={this.state.selected?styles.selected:styles.addressContainer}>
         <View style={styles.addressBox}>
-          <Text>{this.props.address}</Text>
-          <Text>{this.props.pobox}</Text>
-          <Text>{this.props.gra}</Text>
-          <Text>{this.props.city}</Text>
+          <AvenirMedium>{this.props.address}</AvenirMedium>
+          <AvenirMedium>{this.props.pobox}</AvenirMedium>
+          <AvenirMedium>{this.props.gra}</AvenirMedium>
+          <AvenirMedium>{this.props.city}</AvenirMedium>
           </View>
-        </View>
+        </TouchableOpacity>
     )
   }
 }
 
 const styles=StyleSheet.create({
     addressContainer:{
-        height: 120,
-        width: '70%',
-        borderWidth: 1,
-        borderColor: 'black',
+        height: 110,
+        width: '80%',
         padding: 10,
         justifyContent:"flex-start",
         borderRadius: 5,
         marginLeft:20,
         marginTop: 10,
-    
+        shadowColor: '#0A539B',
+        shadowOpacity: 0.2,
+        shadowOffset: {
+            height: 3
+        },
+    backgroundColor: 'white'
       },
       addressBox:{
         height: '70%',
         width: '100%',
       },
+      selected:{
+        height: 110,
+        width: '80%',
+        padding: 10,
+        justifyContent:"flex-start",
+        borderRadius: 5,
+        marginLeft:20,
+        marginTop: 10,
+        borderColor: '#0A539B',
+        borderWidth: 2,
+      
+      }
 })

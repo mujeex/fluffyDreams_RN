@@ -306,7 +306,7 @@ const styles = StyleSheet.create({
   },
   // Active dot
   activeDot: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#0A539B',
   },
   // Button wrapper
   buttonWrapper: {

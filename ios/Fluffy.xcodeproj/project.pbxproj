@@ -25,6 +25,10 @@
 		180EB7182148E1D200328227 /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 180EB7172148E1BD00328227 /* libReactNativeNavigation.a */; };
 		180EB71F21490B3B00328227 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 180EB71E21490B2600328227 /* libRNVectorIcons.a */; };
 		180EB72121490E8200328227 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 180EB72021490E8100328227 /* Ionicons.ttf */; };
+		186B8AEE219CED4A00A2B922 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 180EB71E21490B2600328227 /* libRNVectorIcons.a */; };
+		186B8AF0219CEE6200A2B922 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 186B8AEF219CEE6200A2B922 /* FontAwesome5_Solid.ttf */; };
+		186B8AF2219CEE9E00A2B922 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 186B8AF1219CEE9E00A2B922 /* FontAwesome.ttf */; };
+		18B83FFB219CF26000A0308F /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18B83FD3219CF26000A0308F /* FontAwesome5_Regular.ttf */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -356,6 +360,9 @@
 		180EB6ED2148E1BD00328227 /* ReactNativeNavigation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeNavigation.xcodeproj; path = "../node_modules/react-native-navigation/ios/ReactNativeNavigation.xcodeproj"; sourceTree = "<group>"; };
 		180EB71921490B2400328227 /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
 		180EB72021490E8100328227 /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
+		186B8AEF219CEE6200A2B922 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
+		186B8AF1219CEE9E00A2B922 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
+		18B83FD3219CF26000A0308F /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* Fluffy-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fluffy-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* Fluffy-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fluffy-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -370,6 +377,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				186B8AEE219CED4A00A2B922 /* libRNVectorIcons.a in Frameworks */,
 				140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -613,6 +621,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				18B83FD3219CF26000A0308F /* FontAwesome5_Regular.ttf */,
+				186B8AF1219CEE9E00A2B922 /* FontAwesome.ttf */,
+				186B8AEF219CEE6200A2B922 /* FontAwesome5_Solid.ttf */,
 				180EB72021490E8100328227 /* Ionicons.ttf */,
 				13B07FAE1A68108700A75B9A /* Fluffy */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -1115,7 +1126,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18B83FFB219CF26000A0308F /* FontAwesome5_Regular.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				186B8AF2219CEE9E00A2B922 /* FontAwesome.ttf in Resources */,
+				186B8AF0219CEE6200A2B922 /* FontAwesome5_Solid.ttf in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				180EB72121490E8200328227 /* Ionicons.ttf in Resources */,
 			);

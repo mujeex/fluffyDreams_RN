@@ -20,7 +20,7 @@ const initialState= {
             price: 70, 
             flavor:"Tiramisu",
             size: "12inches",
-            toppings: ["maltesers","gummybears"]
+            toppings: ["gummybears"]
          },
          
         {
@@ -50,7 +50,7 @@ const initialState= {
             price: 77, 
             flavor:"Tiramisu",
             size: "14inches", 
-            toppings: ["mint","mentos","smarties"]
+            toppings: ["mentos","smarties"]
          },
          
         {
@@ -60,7 +60,7 @@ const initialState= {
             price: 61, 
             flavor:"Strawberry",
             size: "12inches",
-            toppings: ["maltesers","gummybears","mint"]
+            toppings: ["gummybears","mint"]
          },
          {
             id: 7,
@@ -69,7 +69,7 @@ const initialState= {
             price: 92, 
             flavor:"Chocolate",
             size: "8inches",
-            toppings: ["mint","mentos","smarties"]
+            toppings: ["mint","smarties"]
          },
          {
             id: 8,
@@ -78,7 +78,7 @@ const initialState= {
             price: 65, 
             flavor:"Vanilla",
             size: "10inches",
-            toppings: ["gummybears","mint","mentos"]
+            toppings: ["gummybears","mint"]
          },
          {
             id: 9,
@@ -96,7 +96,7 @@ const initialState= {
             price: 109, 
             flavor:"Chocolate",
             size: "14inches", 
-            toppings: ["gummybears","mint","mentos","smarties"]
+            toppings: ["mint","mentos","smarties"]
          },
 
     ],

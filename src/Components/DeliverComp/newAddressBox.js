@@ -107,10 +107,10 @@ import Icon from 'react-native-vector-icons/Ionicons'
         content=(
 
             <View style={{flex:1}}>
-            <FlexInput  onBlur={()=>this.blurHandler('address')}  focus={this.state.address.touched} onChangeText={(text)=>this.inputHandler(text,'address')} value={this.state.address.value} placeholder='address'/>
-            <FlexInput onBlur={()=>this.blurHandler('pobox')}  focus={this.state.pobox.touched} onChangeText={(text)=>this.inputHandler(text,'pobox')} value={this.state.pobox.value} placeholder='p.o.box'/>
-            <FlexInput onBlur={()=>this.blurHandler('gra')} focus={this.state.gra.touched} onChangeText={(text)=>this.inputHandler(text,'gra')} value={this.state.gra.value} placeholder='gra'/>
-            <FlexInput onBlur={()=>this.blurHandler('city')} focus={this.state.city.touched} onChangeText={(text)=>this.inputHandler(text,'city')} value={this.state.city.value} placeholder='city'/>
+            <FlexInput  focus={this.state.address.touched} onChangeText={(text)=>this.inputHandler(text,'address')} value={this.state.address.value} placeholder='address'/>
+            <FlexInput  focus={this.state.pobox.touched} onChangeText={(text)=>this.inputHandler(text,'pobox')} value={this.state.pobox.value} placeholder='p.o.box'/>
+            <FlexInput  focus={this.state.gra.touched} onChangeText={(text)=>this.inputHandler(text,'gra')} value={this.state.gra.value} placeholder='gra'/>
+            <FlexInput focus={this.state.city.touched} onChangeText={(text)=>this.inputHandler(text,'city')} value={this.state.city.value} placeholder='city'/>
   
 
             <View style={styles.buttonContainer}>
@@ -144,26 +144,33 @@ import Icon from 'react-native-vector-icons/Ionicons'
 const styles= StyleSheet.create({
     addressContainer:{
         height: 120,
-        width: '70%',
-        borderWidth: 1,
-        borderColor: 'black',
+        width: '80%',
+        // borderWidth: 1,
+        // borderColor: 'black',
         padding: 10,
         justifyContent:"flex-start",
         borderRadius: 5,
         marginLeft:20,
         marginTop: 10,
+        shadowColor: '#0A539B',
+        shadowOpacity: 0.2,
+        shadowOffset: {
+            height: 3
+        },
+        backgroundColor:'white'
     
       },
       addressContainerExtended:{
         height: 250,
-        width: '70%',
+        width: '80%',
         borderWidth: 1,
-        borderColor: 'black',
+        borderColor: '#0A539B',
         padding: 10,
         justifyContent:"flex-start",
         borderRadius: 5,
         marginLeft:20,
         marginTop: 10,
+      
       },
       addressBox:{
         height: '70%',

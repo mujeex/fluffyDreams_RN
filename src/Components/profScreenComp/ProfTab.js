@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, ScrollView} from 'react-native';
-import FlexibleInput from '../Components/profScreenComp/FlexInput'
+// import FlexibleInput from '../Components/profScreenComp/FlexInput'
+import BlankSelect from '../UI/blankSelect'
+import AvenirLight from '../UI/AvenirLight'
+import AvenirHeavy from '../UI/AvenirHeavy'
 
  class profTab extends Component {
 
@@ -8,9 +11,17 @@ import FlexibleInput from '../Components/profScreenComp/FlexInput'
     return (
 
       <ScrollView contentContainerStyle={styles.container}>
+
       <View style={styles.content}>
-      <FlexibleInput styles={styles.input} />
+        <AvenirLight Styles={{fontFamily: 'Avenir-LightOblique',fontSize: 14,}}>Username</AvenirLight>
+      <BlankSelect label='Mujahid'/>
       </View>
+      
+      <View style={styles.content} >
+        <AvenirLight Styles={{fontFamily: 'Avenir-LightOblique',fontSize: 14,}}>Email</AvenirLight>
+      <BlankSelect label='mujahidbappai@yahoo.com'/>
+      </View>
+      
       </ScrollView>
 
     );
@@ -22,12 +33,14 @@ const styles= StyleSheet.create({
      flex:1,
     margin: 10,
     padding: 10,
-    justifyContent:'center',
     alignItems: 'center',
  },
  content:{
-     height: '100%',
-     width: '100%'
+     height: 70,
+     width: '100%',
+     justifyContent:'center',
+     marginTop: 10
+
  },
  input:{
      borderColor: 'red',

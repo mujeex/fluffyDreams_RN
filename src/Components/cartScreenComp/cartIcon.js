@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text , StyleSheet, TouchableOpacity,Platform} from 'react-native';
 import {connect} from "react-redux"
-import Icon from "react-native-vector-icons/Ionicons"
+// import Icon from "react-native-vector-icons/Ionicons"
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 // import {cart} from "../../../App"
 
  class CartIcon extends Component {
@@ -20,7 +21,7 @@ navigatorHandler = () =>{
         <Text style={styles.text}> {this.props.cartSize.length} </Text>
       </View>
       <TouchableOpacity onPress={this.navigatorHandler}>
-      <Icon name={Platform.OS === "android"? "md-cart": "ios-cart"} size={30}/>
+      <FontAwesome5 name={'shopping-cart'} size={30} light/>
       </TouchableOpacity>
      
         </View>

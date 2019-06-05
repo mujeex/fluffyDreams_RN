@@ -3,6 +3,10 @@ import {  View , StyleSheet, ScrollView, Text, TouchableOpacity} from 'react-nat
 import {connect} from "react-redux"
 import SummaryList from "../Components/summaryScreenComp/summaryCartList"
 import {addToDatabase} from '../Store/Actions/index'
+import FlexButton from '../Components/UI/FlexButton'
+import AvenirHeavy from '../Components/UI/AvenirHeavy'
+import AvenirMedium from '../Components/UI/AvenirMedium'
+import AvenirLight from '../Components/UI/AvenirLight'
 
  class SummaryScreen extends Component {
 
@@ -24,7 +28,7 @@ navigationHandler = () => {
     this.props.atdb(this.props.checkout)
     this.props.navigator.push({
         screen: "fluffy.ShippingScreen",
-        title: "YOUR ORDER",
+        title: "Shipping",
         passProps:{
             size: this.props.size,
             total: this.props.total
@@ -46,17 +50,21 @@ navigationHandler = () => {
         <View style={styles.totalNav}>
 
             <View style={styles.sumDetails}>
-            <Text>Number of Items: {this.props.size}</Text>
-            <Text>Total: {this.props.total}</Text>
+
+            <View style={styles.firstBlock}>
+            <AvenirMedium>Number of Items:</AvenirMedium>
+            <AvenirHeavy Styles={{fontFamily: 'Avenir-BlackOblique',fontSize: 20}}>X {this.props.size}</AvenirHeavy>
+            </View>
+
+            <View style={styles.secondBlock}>
+            <AvenirMedium>Total:</AvenirMedium>
+            <AvenirHeavy Styles={{fontFamily: 'Avenir-BlackOblique',fontSize: 20,}}>${this.props.total}</AvenirHeavy>
+            </View>
+
             </View>
 
             <View style={styles.buttonContainer}>
-            <TouchableOpacity onPress={this.navigationHandler}>
-            <View style={styles.button}>
-            <Text style={styles.text}>Proceed to Checkout</Text>
-            </View>
-            
-            </TouchableOpacity>
+            <FlexButton innerStyles={styles.button} label='Proceed to checkout' onPress={this.navigationHandler}/>
             </View>
             
             
@@ -85,7 +93,7 @@ const styles= StyleSheet.create({
         // alignItems: 'center',
         borderWidth: 0.5,
         borderColor: "gray",
-        height: 100,
+        height: 150,
         width: '100%',
 
         // backgroundColor: "red"
@@ -94,28 +102,28 @@ const styles= StyleSheet.create({
         // height: '50%',
         // width: '100%',
         flex: 2,
-        backgroundColor: 'blue',
         // borderRadius: 50
         borderWidth: 0.2,
         borderColor: "black",
-        justifyContent: 'center',
-        alignItems: 'center',
+        // justifyContent: 'center',
+        // alignItems: 'center',
         
     },
     button:{
         // height: '50%',
         // width:'100%',
-       height: '100%',
-       width:'100%',
-       justifyContent:'center',
-       alignItems: 'center',
+    //    height: '100%',
+    //    width:'80%',
+       borderRadius: 50,
+    //    justifyContent:'center',
+    //    alignItems: 'center',
     },
     buttonContainer:{
-        flex: 1,
-        backgroundColor: 'gray',
-
+        flex: 1.5,
+        // backgroundColor: 'gray',
         borderWidth: 0.2,
         borderColor: "black",
+        marginBottom: 5,
     },
     text:{
         color: 'white',
@@ -123,7 +131,22 @@ const styles= StyleSheet.create({
         width: '100%',
         textAlign: 'center'
     }
-
+,firstBlock:{
+    flexDirection:'row',
+    alignItems: 'center',
+    justifyContent:'space-between',
+    width:'100%',
+    height: '30%',
+    paddingHorizontal: 5,
+},
+secondBlock:{
+    flexDirection:'row',
+    alignItems: 'center',
+    justifyContent:'space-between',
+    width:'100%',
+    height:'30%',
+    paddingHorizontal: 5,
+}
 
 })
 

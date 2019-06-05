@@ -5,6 +5,7 @@ import {
   View          // Container component
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import Button from '../OnboardinComp/button';
 import Swiper from "../OnboardinComp/swiper"
 
@@ -12,23 +13,26 @@ export default class Screens extends Component {
   render() {
     return (
         <Swiper>
-      <View style={[styles.slide, { backgroundColor: '#C04DEE' }]}>
-      <Icon name="ios-nutrition" {...iconStyles} />
-        <Text style={styles.header}>EAT</Text>
-        <Text style={styles.text}>Good nutrition is an important part of leading a healthy lifestyle</Text>
+      <View style={[styles.slide, { backgroundColor: 'white' }]}>
+      {/* <FontAwesome5 name={'chess'} {...iconStyles} /> */}
+      <Icon name="ios-color-palette" {...iconStyles} />
+        <Text style={styles.header}>VARIETY</Text>
+        <Text style={styles.text}>Explore the delicacies we have to offer.</Text>
 
       </View>
        {/* Second screen */}
-       <View style={[styles.slide, { backgroundColor: '#4AAFEE' }]}>
-       <Icon name="ios-cloud-upload" {...iconStyles} />
-       <Text style={styles.header}>PRAY</Text>
-       <Text style={styles.text}>Prayer is one of the most important things a Christian can do</Text>
+       <View style={[styles.slide, { backgroundColor: 'white' }]}>
+       {/* <FontAwesome5 name={'truck'} {...iconStyles} /> */}
+       <Icon name="ios-rocket" {...iconStyles} />
+       <Text style={styles.header}>DELIVERY</Text>
+       <Text style={styles.text}>Sit back, relax and leave your address with us.</Text>
      </View>
      {/* Third screen */}
-     <View style={[styles.slide, { backgroundColor: '#FC515B' }]}>
-       <Icon name="ios-heart" {...iconStyles} />
-       <Text style={styles.header}>LOVE</Text>
-       <Text style={styles.text}>Where there is love there is life</Text>
+     <View style={[styles.slide, { backgroundColor: 'white' }]}>
+     {/* <FontAwesome5 name={'hammer'} {...iconStyles} /> */}
+       <Icon name="ios-settings" {...iconStyles} />
+       <Text style={styles.header}>CUSTOMIZE</Text>
+       <Text style={styles.text}>Tailor your design to your taste.</Text>
      </View>
      </Swiper>
     );
@@ -37,7 +41,7 @@ export default class Screens extends Component {
 
 const iconStyles = {
     size: 100,
-    color: '#FFFFFF',
+    color: '#0A539B',
   }; 
 
 const styles = StyleSheet.create({
@@ -49,7 +53,7 @@ const styles = StyleSheet.create({
     },
     // Header styles
     header: {
-      color: '#FFFFFF',
+      color: '#0A539B',
       fontFamily: 'Avenir',
       fontSize: 30,
       fontWeight: 'bold',
@@ -57,7 +61,7 @@ const styles = StyleSheet.create({
     },
     // Text below header
     text: {
-      color: '#FFFFFF',
+      color: 'black',
       fontFamily: 'Avenir',
       fontSize: 18,
       marginHorizontal: 40,

@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Text, View ,StyleSheet, Image, Platform, ScrollView} from 'react-native'
+import { Text, View ,StyleSheet, Image, TouchableWithoutFeedback,TouchableHighlight} from 'react-native'
 
-import Icon from "react-native-vector-icons/Ionicons"
+// import Icon from "react-native-vector-icons/FontAwesome5"
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import Selections from "./selections"
 import Toppings from "./Toppings/toppings"
 
@@ -12,20 +13,21 @@ import Toppings from "./Toppings/toppings"
   render() {
     return (
       <View style= {styles.wrapper}>
-        <View style={styles.slideIndicator}> <Icon name={Platform.OS === "android"? "md-arrow-dropup": "ios-arrow-dropup" } size={25}/> </View>
-        <View style={styles.Header}>
-        <Image style={styles.image} source={this.props.cakes.image}/>
-        <Text>{this.props.cakes.price}</Text>
-        </View>
-        <ScrollView contentContainerStyle={styles.scrollWrapper}>
+      <TouchableWithoutFeedback onPress={()=>this.props.onPress()} >
+      <View style={styles.slideIndicator}>
+      <FontAwesome5 name={this.props.isShown?'angle-up':'angle-down'} size={30} regular/> 
+      </View>
+      </TouchableWithoutFeedback >
+        {/* <View > </View> */}
+        {/* z */}
+        {/* <View style={{flex:8}}>  */}
+        <View style={styles.scrollWrapper}>
             <Selections priceEdit= {this.props.priceHandler} label="Flavor" options={this.props.customs.Flavor}/>
             <Selections priceEdit= {this.props.priceHandler} label="Size" options={this.props.customs.Sizes}/>
             <Toppings priceEdit= {this.props.priceHandler} label="Toppings" options={this.props.customs.Toppings}/>
-            <View style={styles.counter}>
-           
-            </View>
-           
-        </ScrollView>
+        </View>
+        {/* </View> */}
+       
       </View>
     )
   }
@@ -40,15 +42,16 @@ const styles= StyleSheet.create({
       borderTopRightRadius: 5,
     },
     slideIndicator:{
-      height: 25,
+      flex:1.5,
       width: '100%',
       alignItems: 'center',
+      justifyContent:'center'
     },
     scrollWrapper:{
-      flex: 1,
+      flex: 8.5,
       width: '100%',
-
       alignContent: 'center',
+     
 
     },
     Header:{

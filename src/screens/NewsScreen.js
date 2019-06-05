@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, Text} from "react-native"
+import {View, Text,StyleSheet} from "react-native"
 import CarouselPager from "react-native-carousel-pager"
 import Content from "../Components/newScreenComp/content"
 
@@ -20,7 +20,7 @@ export default class NewsScreen extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        <CarouselPager containerPadding={20} ref={ref => this.carousel = ref} initialPage={2} pageStyle={{backgroundColor: '#f7efed'}}>
+        <CarouselPager pageStyle={pageStyles} containerPadding={20} ref={ref => this.carousel = ref} initialPage={2} pageStyle={{backgroundColor: '#f7efed'}}>
           <View onPress={()=> this.onClickSomething()} key={'page0'}>
           <Content uri ={require('../Assets/birthday-birthday-cake-cake-140831.jpg')} subtitle="Delivery"/> 
           </View> 
@@ -31,4 +31,9 @@ export default class NewsScreen extends Component {
       </View>
     );
   }
+}
+
+const pageStyles={
+borderWidth: 1,
+borderColor: 'red'
 }

@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
-import {View, Text, StyleSheet,Dimensions, ImageBackground,Button,TouchableOpacity,Platform} from "react-native"
+import {View, Text, StyleSheet,Dimensions, ImageBackground,TouchableOpacity,Platform} from "react-native"
 import Auth from "../Components/authComp/auth"
-// import ProfileTab from '../Components/profScreenComp/ProfTab'
+import ProfileTab from '../Components/profScreenComp/ProfTab'
 import MyOrder from '../Components/profScreenComp/myOrder'
 // import FlexibleInput from '../Components/profScreenComp/flexInput'
 import Icon from 'react-native-vector-icons/Ionicons'
-
+import {authLogOut} from '../Store/Actions/index'
+import SupportTab from '../Components/profScreenComp/supportTab'
+import AvenirHeavy from '../Components/UI/AvenirHeavy'
+import AvenirLight from '../Components/UI/AvenirLight'
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import {connect} from 'react-redux'
+import AvenirMedium from '../Components/UI/AvenirMedium';
 
 
 const Width= Dimensions.get('window').width
@@ -24,7 +29,7 @@ state={
   display: 'profile'
 }
 
-  handleNavigation= ()=>{
+  handleNavigation= ()=> {
     this.props.navigator.push({
       screen: "fluffy.ProfileInfoScreen",
       animated: true,
@@ -32,17 +37,21 @@ state={
     })
   }
 
-  handleDisplay=(display)=>{
+  handleDisplay=(display)=> {
     this.setState({
       display: display
     })
   }
 
+  logoutHandler= () =>{
+    this.props.logout()
+  }
+
   render() {
     //=====================display logic==================
     let display=(
-        //  <ProfileTab/> 
-        <View><Text>Profile tab</Text></View>
+         <ProfileTab/> 
+        // <View><Text>Profile tab</Text></View>
     )
     if(this.state.display == 'myOrders'){
       display=(
@@ -50,8 +59,7 @@ state={
       )
     }else if(this.state.display == 'support'){
       display=(
-        // <Support/>
-        <View><Text>support tab</Text></View>
+        <SupportTab/>
       )
     }
 
@@ -66,16 +74,17 @@ state={
       return (
         <View style={{flex: 1}}>
 
-        <ImageBackground style={styles.background}>
+        <ImageBackground source={require('../Assets/wildlife-mistakes.jpg')} resizeMode='cover' style={styles.background}>
         <View style= {styles.header}>
-          <Text style={{color: "white", fontSize: 20,}}>PROFILE</Text>
-        <TouchableOpacity>
-        <Icon name={Platform.OS=='android'?'md-log-out':'ios-log-out'} size={25}/>
+         <View style={{flex:1,justifyContent:'center',alignItems: 'flex-end',}}><AvenirMedium Styles={{color: "black", fontSize: 20}}>Profile</AvenirMedium></View> 
+        <TouchableOpacity style={{flex:1,justifyContent:'center', alignItems: 'flex-end',}} onPress={this.logoutHandler}>
+        <FontAwesome5 name={'sign-out-alt'} size={20}/>
+        {/* <Icon name={Platform.OS=='android'?'md-log-out':'ios-log-out'} size={25}/> */}
           </TouchableOpacity> 
         </View>
 
         <View style={styles.pointsBox}>
-        <Text>Points</Text>
+        <AvenirHeavy Styles={{fontSize:20, color:'#0A539B'}}>Points : {this.props.points}pts</AvenirHeavy>
           </View>
         </ImageBackground>
         {/* <View style={styles.circle}><Text>M</Text></View> */}
@@ -84,9 +93,9 @@ state={
 
           <View style={styles.tabsContainer}>
           <View style={styles.tabs}>
-          <TouchableOpacity onPress={()=>this.handleDisplay('profile')}>  <Text>Profile</Text> </TouchableOpacity>  
-          <TouchableOpacity onPress={()=>this.handleDisplay('myOrders')} > <Text>My Orders</Text> </TouchableOpacity> 
-          <TouchableOpacity onPress={()=>this.handleDisplay('support')}>  <Text>Support</Text> </TouchableOpacity> 
+          <TouchableOpacity onPress={()=>this.handleDisplay('profile')} style={styles.flex}>  <View style={this.state.display=='profile'? styles.line: styles.noLine} ><AvenirLight Styles={this.state.display=='profile'?styles.dark:styles.normal}>Profile</AvenirLight> </View>    </TouchableOpacity>  
+          <TouchableOpacity  onPress={()=>this.handleDisplay('myOrders')} style={styles.flex}> <View style={this.state.display=='myOrders'? styles.line: styles.noLine}><AvenirLight Styles={this.state.display=='myOrders'?styles.dark:styles.normal}>History</AvenirLight></View>  </TouchableOpacity> 
+          <TouchableOpacity onPress={()=>this.handleDisplay('support')} style={styles.flex}>  <View style={this.state.display=='support'? styles.line: styles.noLine} > <AvenirLight Styles={this.state.display=='support'?styles.dark:styles.normal}>Support</AvenirLight></View>  </TouchableOpacity> 
           </View>
           </View>
         
@@ -111,30 +120,33 @@ state={
 const styles= StyleSheet.create({
   header:{
     width: Width,
-    height:50,
+    height:45,
     alignItems: 'center',
     justifyContent: "center"
-    ,backgroundColor: "#20265c",
+    ,backgroundColor: "white",
     paddingBottom: 10,
+    flexDirection: 'row',
   },
 
   
   background:{
     backgroundColor: "maroon",
     height: '50%',
-    flex: 4,
+    flex: 3.5,
     justifyContent:'space-between'
 
   },
   pointsBox:{
     height: 40,
-    width: '60%',
-    backgroundColor: "gray",
-    borderRadius: 5,
+    width: '50%',
+    backgroundColor: "white",
+    borderRadius: 15,
     alignSelf: 'center',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent:'flex-start'
+    justifyContent:'center',
+    marginBottom: 10,
+
   },
   // circle:{
   //   alignItems: 'center',
@@ -150,7 +162,7 @@ const styles= StyleSheet.create({
     
   // },
   activity:{
-    backgroundColor: "gray",
+    backgroundColor: "white",
     flex: 6,
     // justifyContent: "center",
     // alignItems: 'center',
@@ -160,31 +172,67 @@ tabs:{
     // marginTop: 10,
     // padding: 10,
     backgroundColor:'white',
-    borderRadius: 50,
-    height: '90%',
-    width: '90%',
+
+   flex:1,
     flexDirection: 'row',
     justifyContent:'space-around',
     alignItems: 'center',
 
   },
   tabsContainer:{
-    flex:1,
+    flex:1.5,
     justifyContent:'center',
     alignItems:'center',
-    backgroundColor: 'orange'
+    backgroundColor: 'white',
+  
   },
   body:{
     flex: 9,
-    backgroundColor: 'beige'
+    backgroundColor: 'white'
+  },
+  dark:{
+    fontFamily: 'Avenir-Heavy',
+    fontSize: 20,
+    color: '#0A539B',
+
+  },
+  normal:{
+    fontFamily: 'Avenir-Light',
+    fontSize: 18,
+    color: '#0A539B',
+
+  },
+  line:{
+    flex:1,
+    borderBottomColor: '#0A539B',
+    borderBottomWidth: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+    
+  },
+  noLine:{
+    flex:1,
+    justifyContent: 'center',
+    alignItems: 'center',
+   
+  }
+  ,flex:{
+    flex:1
   }
 
 })
 
 const mapStateToProps = state => {
   return{
-    auth: state.auth.login
+    auth: state.auth.login,
+    points: state.bonus.points
   }
 }
 
-export default connect(mapStateToProps)(ProfileScreen)
+const mapDispatchToProps = dispatch => {
+  return{
+    logout: ()=> dispatch(authLogOut())
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(ProfileScreen)

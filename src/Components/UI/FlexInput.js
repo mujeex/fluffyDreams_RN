@@ -4,27 +4,32 @@ import {TextInput, StyleSheet} from 'react-native'
 const flexibleInput = (props) => (
     <TextInput
     {...props}
-    style={[styles.input,props.focus?styles.focused:styles.noFocus]}
+    style={[styles.input,props.Style,props.focus?styles.focused:styles.noFocus]}
     />
 )
 
 const styles= StyleSheet.create({
     input: {
         width: "100%",
-        borderWidth: 1,
-        borderColor: "#eee",
-        padding: 5,
-        marginTop: 8,
-        marginBottom: 8
+        borderBottomWidth: 1,
+        borderBottomColor: "#85A9CD",
+        padding: 10,
+        // marginTop: 8,
+        // marginBottom: 8,
+
       },
       focused:{
-        borderColor: 'red',
-        borderWidth: 0.5
+        borderColor: "#0A539B",
+        borderBottomWidth: 2
       },
       noFocus:{
-        borderColor: '#eee',
-        borderWidth: 0.5,
-      }
+        borderColor: "#0A539B",
+        borderBottomWidth: 1,
+      },
+      // valid:{
+      //   borderBottomColor: "#0A539B",
+      //   borderBottomWidth: 0.5,
+      // }
 })
 
 export default flexibleInput

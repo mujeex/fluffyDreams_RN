@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import {connect} from "react-redux"
-import { View, ImageBackground, StyleSheet, Dimensions } from 'react-native'
+import { View, ImageBackground, StyleSheet, Dimensions, Animated } from 'react-native'
 import ItemData from "../Components/orderScreenComp/itemData"
 import ButtonSlide from "../Components/orderScreenComp/button"
+import FlexButton from '../Components/UI/FlexButton'
 import Customize  from "../Components/orderScreenComp/customize"
 import {clearSelected,updateFlavor,updateSize,pushToCart,updateToppings, ReUpdateToppings,UpdatedPrice} from "../Store/Actions/index"
 import {analyse,add,toppingsfunc} from "../priceAnalyser/analyser"
@@ -21,6 +22,11 @@ const HEIGHT= Dimensions.get('window').height
           tabBarHidden:true,
          drawUnderTabBar: true
       };
+      constructor (){
+        super()
+        this.slideAnim = new Animated.Value(this.state.isShown?1:0)
+        console.log(this.state.isShown)
+      }
 
 state={
   toppingsholder:null,
@@ -28,18 +34,30 @@ state={
   size:null,
   toppings:null,
   total: null,
-  priceUpdate:null
-
+  priceUpdate:null,
+  // slideAnim : new Animated.Value(0),
+  isShown:false
 }
+
+
 
 addToCartHandler = () => {
   // price variable isn't being updated from the redux store because the current capabilities of redux isn't
   //enough to accomodate the logic needed for it's update. Hence, it got stored in the components local state and it is
   // now going to be pushed to the redux store before the whole updated customized object by the user gets pushed to the store.
-
- 
   // console.log(this.props.selected)
+if(!this.props.auth){
+  this.props.navigator.push({
+    screen: "fluffy.ProfileInfoScreen",
+    title: "Login",
+    passProps:{
+      auth:this.props.auth
+    }
+  })
+}else{
   this.props.pushCart(this.props.selected)
+}
+  
 
   
 }
@@ -163,16 +181,30 @@ addToCartHandler = () => {
 
       })
 
-      console.log(this.state.total)
+      // console.log(this.state.total)
     };
-    componentDidMount = () => {
-      
-    };
-    
-  
-  
-
+   
+    slideUpHandler=()=>{
+      console.log(this.slideAnim)
+        this.setState({
+          isShown: !this.state.isShown,
+        },
+        ()=> Animated.timing(
+          this.slideAnim,{
+            toValue: this.state.isShown?0:1,
+            duration: 1000,
+            useNativeDriver:true
+          }
+        ).start()
+        ) 
+    }
   render() {
+    let slide=this.slideAnim.interpolate(
+      {
+        inputRange:[0,1],
+        outputRange:[270,0]
+      }
+    )  
     return (
       <ImageBackground source={this.props.selected.image} style={styles.backgroundImage}>
 
@@ -180,14 +212,15 @@ addToCartHandler = () => {
       <ItemData  title= "Back" onPress={this.popNavigation} data={this.props.selected} price={this.state.total}/>
       </View>
 
-      <View style={styles.customize} >
-          <Customize customs={this.props.Customs} cakes={this.props.selected} priceHandler={this.priceHandler}/>
-      </View>
+      <Animated.View style={{ width: '100%', marginTop: 10,   height: '55%'  , transform: [{translateY: slide}]}} >
+          <Customize isShown={this.state.isShown} onPress={this.slideUpHandler} customs={this.props.Customs} cakes={this.props.selected} priceHandler={this.priceHandler}/>
+      </Animated.View>
 
       <View style= {styles.wrapper}>
-       <ButtonSlide onPress={()=>this.addToCartHandler()}/>
+      <FlexButton  label='Add To Cart' onPress={this.addToCartHandler}/>
+       {/* <ButtonSlide onPress={()=>this.addToCartHandler()}/> */}
       </View>
- 
+
       </ImageBackground>
     )
   }
@@ -200,7 +233,8 @@ const styles= StyleSheet.create({
     content: {
       // flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        height: '45%'
        
     },
     backgroundImage:{
@@ -215,18 +249,23 @@ const styles= StyleSheet.create({
     //     backgroundColor: "transparent"
     // },
   wrapper:{
-    width: '90%',
+    width: '100%',
     justifyContent: "center",
     alignItems: "center",
     position: "absolute",
     top: HEIGHT-50,
-    backgroundColor: "#64abff",
-    borderRadius: 10,
-    alignSelf: 'center'
+    backgroundColor: "white",
+    // borderRadius: 10,
+    alignSelf: 'center',
+    height: 50
   },
-  customize:{
-    width: '100%',
-    marginTop: 10,    
+  // customize:{
+  //   width: '100%',
+  //   marginTop: 10,  
+  //   height: '55%'  ,
+  // }
+  button:{
+   
   }
    
 })
@@ -247,6 +286,7 @@ const mapStateToProps = state =>{
   return{
     selected: state.order.selected,
     highlight:state.order.Rxhiglighted,
+    auth: state.auth.login
   }
 }
 

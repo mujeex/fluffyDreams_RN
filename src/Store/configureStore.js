@@ -5,6 +5,7 @@ import cartReducer from "./Reducers/cartReducer"
 import authReducer from "./Reducers/authReducer"
 import uiReducer from "./Reducers/ui"
 import adboxReducer from './Reducers/addressboxReducer'
+import bonusReducer from './Reducers/bonusReducer'
 
 import thunk from "redux-thunk"
 
@@ -14,8 +15,8 @@ const rootReducer= combineReducers({
     cart: cartReducer,
     auth: authReducer,
     ui: uiReducer,
-    box: adboxReducer
-
+    box: adboxReducer,
+    bonus:bonusReducer
 })
 
 let composeEnhancer= compose

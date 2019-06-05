@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text,StyleSheet,Platform } from 'react-native';
+import {connect} from 'react-redux'
 import SelectionBox from '../Components/UI/selectionbox.js'
 import FlexButton from '../Components/UI/FlexButton'
+import {addPoints} from '../Store/Actions/index'
+import AvenirMedium from '../Components/UI/AvenirMedium'
+import AvenirHeavy from '../Components/UI/AvenirHeavy'
 
  class payment extends Component {
 
@@ -15,6 +19,8 @@ import FlexButton from '../Components/UI/FlexButton'
 
 
     navigationHandler =() =>{
+        let totalPoints= this.props.size* 100
+        this.props.addPoints(totalPoints)
         this.props.navigator.push({
             screen: "fluffy.ConfirmationScreen",
         })
@@ -38,14 +44,14 @@ import FlexButton from '../Components/UI/FlexButton'
           </View>
 
           <View style={styles.totalContainer}>
-              <View style={styles.left}><Text style={styles.text}>Total amount</Text></View>
-              <View style={styles.right}><Text style={styles.text}>${this.props.total}</Text></View>
+              <View style={styles.left}><Text style={styles.text}>Total Amount</Text></View>
+              <View style={styles.right}><Text style={styles.text1}>${this.props.total}</Text></View>
           </View>
       </View>
          
 
           <View style={styles.button}>
-        <FlexButton label='PROCEED' onPress={this.navigationHandler}/>
+        <FlexButton label='Proceed' onPress={this.navigationHandler}/>
           </View>
 
       </View>
@@ -56,8 +62,6 @@ import FlexButton from '../Components/UI/FlexButton'
 const styles=StyleSheet.create({
     container:{
        flex:1 ,
-       borderWidth: 1,
-       borderColor: 'red',
        alignItems: 'center',
        justifyContent:'space-between',
        padding: 15
@@ -68,19 +72,19 @@ selection:{
     // padding: 10,
     margin: 10,
     alignItems: 'center',
-    borderWidth: 1,
-    borderColor: 'red',
+    // borderWidth: 1,
+    // borderColor: 'red',
     height: 60
 
 },
 totalContainer:{
     marginTop: 50,
-    width: '90%',
+    width: '95%',
     height: 60,
-    borderTopWidth: 1,
+    borderTopWidth: 0.4,
     borderTopColor: 'black',
     flexDirection: 'row',
-    justifyContent:'space-around',
+    justifyContent:'space-between',
     alignItems: 'center',
 
 },
@@ -89,16 +93,23 @@ left:{
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
+    marginLeft: 5,
 },
 right:{
     width: '40%',
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
+    marginRight: 5,
 },
 text:{
     fontSize: 16,
-    fontWeight: 'bold'
+    fontFamily: 'Avenir-MediumOblique'
+
+},
+text1:{
+    fontSize: 20,
+    fontFamily: 'Avenir-Heavy',
 },
 button:{
     width: '100%',
@@ -107,4 +118,11 @@ button:{
 }
 })
 
-export default payment
+const mapDispatchToProps = dispatch =>{
+    return{
+        addPoints: (points)=> dispatch(addPoints(points))
+    }
+   
+}
+
+export default connect(null, mapDispatchToProps)(payment)

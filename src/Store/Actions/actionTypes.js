@@ -32,3 +32,6 @@ export const  UI_STOP_LOADING= 'UI_STOP_LOADING'
 export const  SAVE_CONTENT= ' SAVE_CONTENT'
 export const INPUT_UPDATE = 'INPUT_UPDATE'
 export const CHANGE_MODE= 'CHANGE_MODE'
+
+//bonusReducer
+export const ADD_POINTS = 'ADD_POINTS'

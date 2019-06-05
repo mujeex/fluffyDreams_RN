@@ -20,34 +20,28 @@ const MainTabs = () => {
                 label1: "Home",
                 screen: "fluffy.HomeScreen",
                 icon: sources[0]
-    
             },
             {
                 label2: "News",
                 screen: "fluffy.NewsScreen",
                 icon: sources[1]
-    
             },
             {
                 label3: "Cart",
                 screen: "fluffy.CartScreen",
                 icon: sources[2],
                 title: " Shopping Cart",
-
             },
             {
                 label4: "Profile",
                 screen: "fluffy.ProfileScreen",
                 icon: sources[3]
             }
-    
-        
         ],
         tabsStyle:{
             tabBarHideShadow: true,
-
-            // tabBarTranslucent: true
-            // tabBarButtonColor: "red"
+            tabBarButtonColor: '#0A539B',
+            tabBarBackgroundColor:'white'
         },
         appStyle: {
             keepStyleAcrossPush: false
@@ -56,6 +50,5 @@ const MainTabs = () => {
     })
     
 }
-
 
 export default MainTabs

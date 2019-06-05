@@ -4,12 +4,14 @@ import CartList from "../Components/cartScreenComp/cartList"
 import {connect} from "react-redux"
 import {addItem,removeItem,removeFromCart} from "../Store/Actions/index"
 import Auth from '../Components/authComp/auth'
+import OrderButton from '../Components/UI/orderButton'
 
 
  class CartContainer extends Component {
 
   state={
     total:0,
+    counter: 1
     // checkoutCart:[]
   }
 
@@ -17,13 +19,15 @@ import Auth from '../Components/authComp/auth'
     console.log("amazing")
     this.props.navigator.push({
       screen: "fluffy.SummaryScreen",
-      title: "SUMMARY",
+      title: "Summary",
       passProps:{
         total: this.state.total ,
-        size:this.props.checkout.length
+        size:this.props.checkout.length,
+        // amount: this.state.counter
       }
     })
   }
+
 
   getItemPrice= (quantity,item, bool) =>{
     // console.log(item)
@@ -59,6 +63,13 @@ import Auth from '../Components/authComp/auth'
     console.log(id)
   }
 
+  counterHandler=(counter)=>{
+    console.log(counter)
+    this.setState({
+      counter:counter
+    })
+  }
+ 
   
   
   
@@ -66,30 +77,16 @@ import Auth from '../Components/authComp/auth'
   render() {
 // ================= Button Logic ==============================
 let button = (
-  <View style={this.props.checkout!=0?styles.totalNavColored: styles.totalNav}>
-  <View style={styles.selectAll}>
-   <Text>PLACE ORDER</Text>
-  </View>
-  <View style={styles.totalCalc}>
-  <View style={styles.totalButton}>
-    <Text>{this.state.total!== 0?this.state.total:0}</Text>
-  </View>
-  </View>
+  <View style={ styles.totalNav}>
+  <OrderButton checkout={this.props.checkout} label='Place Order' price={this.state.total!==0?this.state.total:0}/>
   </View>
 )
 
 if(this.props.checkout.length != 0){
   
  button= (<TouchableOpacity onPress={()=> this.totalHandler()}>
-   <View style={this.props.checkout!=0?styles.totalNavColored: styles.totalNav}>
-  <View style={styles.selectAll}>
-   <Text>PLACE ORDER</Text>
-  </View>
-  <View style={styles.totalCalc}>
-  <View style={styles.totalButton}>
-    <Text>{this.state.total!== 0?this.state.total:0}</Text>
-  </View>
-  </View>
+   <View style={ styles.totalNav}>
+  <OrderButton checkout={this.props.checkout} label='Place Order' price={this.state.total!==0?this.state.total:0}/>
   </View>
    </TouchableOpacity>)
   
@@ -97,8 +94,6 @@ if(this.props.checkout.length != 0){
 // ==============================================================
 
 // =================Conditonal render of component=================
-
-
     if(!this.props.auth){
       return(
         <Auth/>
@@ -112,10 +107,13 @@ if(this.props.checkout.length != 0){
         return(
           <View style={styles.container}>
 
-          <ScrollView contentContainerStyle={styles.scrollContainer}>
+          <ScrollView >
+          <View style={styles.scrollContainer}>
           {this.props.cartItems.map((cartItems, index)=>(
-            <CartList delete={this.deleteHandler} getPrice={this.getItemPrice} cartItems={cartItems} key={index}/> )
+            <CartList getCounter={this.counterHandler} delete={this.deleteHandler} getPrice={this.getItemPrice} cartItems={cartItems} key={index}/> )
             )}
+          </View>
+         
           </ScrollView>
           {button}
           </View>
@@ -123,47 +121,32 @@ if(this.props.checkout.length != 0){
       }
   }
 }
-
 // ========================================================
 
 const styles= StyleSheet.create({
     container:{
         flex: 1,
         
-        padding: 10,
+        // padding: 10,
       
 
     },
     scrollContainer:{
         flex:1,
-        
+        justifyContent:'center',
+        alignItems:'center',
+        marginBottom:5
         // borderWidth:1,
         // borderColor: "red",
     },
     totalNav:{
-      // position:'absolute',
-      // top: 50,
-      flexDirection: 'row',
-      justifyContent:"space-around",
       alignItems: 'center',
-      borderWidth: 0.5,
-      borderColor: "gray",
       height: 50,
       width: '100%',
-      // backgroundColor:"gray"
+      marginBottom: 4,
+
     },
-    totalNavColored:{
-      // position:'absolute',
-      // top: 50,
-      flexDirection: 'row',
-      justifyContent:"space-around",
-      alignItems: 'center',
-      borderWidth: 0.5,
-      borderColor: "gray",
-      height: 50,
-      width: '100%',
-      backgroundColor:"gray"
-    },
+  
     selectAll:{
       width: "60%",
       height: '100%',
@@ -172,27 +155,8 @@ const styles= StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center'
     },
-    
-    totalCalc:{
-      width: '40%',
-      height: '100%',
-      borderWidth: 0.5,
-      borderColor: "black",
-      flexDirection: 'row',
-      justifyContent:"center",
-      alignItems: 'center',
-      padding: 10
-    },
 
-    totalButton:{
-      height:'90%',
-      width: 60,
-      borderRadius: 20,
-      borderWidth: 0.5,
-      borderColor: "black",
-      alignItems:"center",
-      justifyContent: 'center'
-    },
+   
     // label:{
     //   justifyContent: 'center',
     //   alignItems: 'center',

@@ -4,17 +4,19 @@ import {getAuthToken} from './index'
 
 
 
-export const addItem = (item) =>{
+export const addItem = (item,quantity) =>{
     return{
         type: ADD_ITEM,
-        item
+        item,
+        // quantity
     }
 }
 
-export const removeItem = (item) =>{
+export const removeItem = (item,quantity) =>{
     return{
         type: REMOVE_ITEM,
-        item
+        item,
+        // quantity
     }
 }
 

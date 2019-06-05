@@ -2,11 +2,13 @@ import React, {Component} from 'react'
 import {View, Text,StyleSheet,Platform} from 'react-native'
 import Icon from "react-native-vector-icons/Ionicons"
 import FlexButton from '../Components/UI/FlexButton'
+import AvenirMedium from '../Components/UI/AvenirMedium'
 
 class confirmation extends Component {
 
+   
     static navigatorStyle = {
-        drawUnderNavBar: true,
+        drawUnderNavBar: false,
         navBarTranslucent: true,
         navBarHidden: true,
           tabBarHidden:true,
@@ -25,12 +27,12 @@ class confirmation extends Component {
             <View style={styles.container}>
         <View style={styles.iconContainer}><Icon name={Platform.OS=='android'? 'md-car': 'ios-car'} size={100}/></View>
         <View style={styles.textContainer}>
-        <Text style={styles.text}>Congratulations on your order!!</Text>
+        <AvenirMedium Styles={styles.text}>Congratulations on your order!!</AvenirMedium>
+        <AvenirMedium Styles={{color:'#0A539B'}}>+100 points</AvenirMedium>
+        </View>
 
         <View style={styles.buttonPosition}>
-        <FlexButton styles={styles.button} label='CONTINUE SHOPPING' onPress={this.navigationHandler}/>
-        </View>
-        
+        <FlexButton  label='Continue Shopping' onPress={this.navigationHandler}/>
         </View>
         
     </View>
@@ -60,11 +62,13 @@ const styles=StyleSheet.create({
     text:{
         fontSize: 20
     },
-    button:{
-        height: 50
-    },
+  
     buttonPosition:{
-        marginTop: 100
+        marginTop: 100,
+        height: 50,
+        width:'100%',
+        position: 'absolute',
+        top: 300
     }
 })
 

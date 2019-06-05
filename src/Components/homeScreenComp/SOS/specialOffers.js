@@ -2,14 +2,16 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet , ScrollView } from 'react-native'
 import SpecialImage from "./specialImage"
+import AvenirHeavy from '../../UI/AvenirHeavy'
+import AvenirBlack from "../../UI/AvenirBlack"
 
  class SpecialOffer extends Component {
   render() {
     return (
       <View  style={styles.OfferWrapper}>
  <View style={styles.OfferTexts}>
-      <Text style={{fontWeight: "bold", marginLeft: 10,}}>SPECIAL OFFER</Text>
-      <Text style={{color: "red", marginRight: 10,}}>50%</Text>
+      <AvenirBlack Styles={{ marginLeft: 10,}}>SPECIAL OFFER</AvenirBlack>
+      <AvenirBlack Styles={{color: "red", marginRight: 10,}}>50%</AvenirBlack>
     </View>
 
          <View style={{flex: 3, flexDirection: 'row', width:this.props.Dimension} }>
@@ -41,9 +43,9 @@ const styles = StyleSheet.create({
   OfferTexts:{
     flex: 1,
      backgroundColor:"white",
-     borderBottomWidth: 1,
+    //  borderBottomWidth: 1,
      marginBottom: 2,
-     borderBottomColor: "black",
+    //  borderBottomColor: "black",
      flexDirection: 'row',
      justifyContent: "space-between",
      alignItems: 'center',

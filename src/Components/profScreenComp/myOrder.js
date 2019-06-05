@@ -14,10 +14,13 @@ class MyOrders extends Component {
         )
     }else{
         return (
-            <ScrollView contentContainerStyle={styles.container}>
-              {this.props.checkout.map((checkoutItems, index)=>(
+            <ScrollView>
+            <View style={styles.list}>
+            {this.props.checkout.map((checkoutItems, index)=>(
                 <SummaryList cartItems={checkoutItems} key={index}/> )
                 )}
+            </View>
+             
             </ScrollView>
           )
     }
@@ -26,7 +29,7 @@ class MyOrders extends Component {
 }
 
 const styles= StyleSheet.create({
-container:{
+list:{
     flex:1,
     margin: 10,
     padding: 10,

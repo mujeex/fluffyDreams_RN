@@ -24,9 +24,11 @@ export const tryAuth = (authData, authMode) => {
             }
         }).then(res => res.json())
         .then(parsedRes => { 
+            console.log(parsedRes)
             dispatch(uiStopLoading())
             if(!parsedRes.idToken){
-                alert('id token not found')
+                console.log(parsedRes)
+                alert('Token not found try something else')
             }else{
                 //we need to pass the token that we got from successfully having to login to the firestore in order to access database
                 dispatch(authStoreToken(parsedRes.idToken,parsedRes.expiresIn,parsedRes.refreshToken))
@@ -37,8 +39,7 @@ export const tryAuth = (authData, authMode) => {
         }).catch(error=>{
             console.log(error)
             dispatch(uiStopLoading())
-            alert('There is a problem with your authentication')
-            
+            alert('There is a problem with your network')
         })
     }
 }
@@ -64,7 +65,6 @@ export const authStoreToken=(token, expiresIn, refreshToken)=> {
         expiryDate
     }
 }
-
  export const getAuthToken= () => {
     return (dispatch, getState) => {
         const promise= new Promise((resolve, reject)=>{
@@ -100,8 +100,7 @@ export const authStoreToken=(token, expiresIn, refreshToken)=> {
             }else{
                 //this is executed when the token exists in the redux store
                 resolve(token)
-            }
-         
+            } 
         })
        return promise
        .catch(err => {
@@ -134,10 +133,8 @@ export const authStoreToken=(token, expiresIn, refreshToken)=> {
          }else{
              return token
          }
-     })
-      
-    }
-  
+     }) 
+    } 
 }
 
 export const autoSignIn =() =>{
