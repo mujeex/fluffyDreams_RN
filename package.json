@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "email-validator": "^2.0.4",
-    "npm": "^6.11.2",
+    "npm": "^6.13.4",
     "react": "^16.9.0",
     "react-native": "^0.55.4",
     "react-native-carousel-pager": "^1.5.0",
